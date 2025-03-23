@@ -1,0 +1,19 @@
+# Ignore o ambiente virtual
+Lib/
+Scripts/
+Include/
+pyvenv.cfg
+
+# Ignore arquivos gerados pelo Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore logs e arquivos temporários
+*.log
+*.tmp
+
+# Ignore configurações específicas de IDEs
+.vscode/
+.idea/
+*.swp
