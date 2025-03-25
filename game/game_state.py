@@ -1,7 +1,7 @@
 import pygame
 import sys
 from .menu import Menu
-from .news_article import NewsArticle
+from .news_article import DraggableNewsArticle  # Alterado para DraggableNewsArticle
 from .constants import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, ASSETS_PATH
 
 
@@ -14,8 +14,12 @@ class GameState:
         # Carrega as imagens de fundo uma vez
         self.background = pygame.image.load(ASSETS_PATH['background']).convert()
 
+        cursor_image = pygame.image.load(ASSETS_PATH['cursor']).convert_alpha()
+        cursor = pygame.cursors.Cursor((0, 0), cursor_image)
+        pygame.mouse.set_cursor(cursor)
+
         self.menu = Menu()
-        self.news_article = NewsArticle()
+        self.news_article = DraggableNewsArticle()  # Alterado para DraggableNewsArticle
         self.current_state = "menu"
         self.running = True
 
@@ -40,6 +44,8 @@ class GameState:
                     self.current_state = "game"
                 elif action == "quit":
                     self.running = False
+            elif self.current_state == "game":
+                self.news_article.handle_event(event)  # Adicionado para lidar com eventos de arrastar
 
     def _update(self):
         pass
