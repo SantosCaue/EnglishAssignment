@@ -11,6 +11,8 @@ HIGHLIGHT_COLOR = (200, 100, 100)
 ASSETS_PATH = {
     'background': 'assets/sprites/background.png',
     'news_article': 'assets/sprites/news_article.png',
+    'red_stamp': 'assets/sprites/red_stamp.png',
+    'green_stamp': 'assets/sprites/green_stamp.png'
     'cursor': 'assets/sprites/cursor.png',
 }
 
