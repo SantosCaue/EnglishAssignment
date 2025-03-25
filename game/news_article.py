@@ -37,7 +37,7 @@ class NewsArticle:
             section_height = 0
 
             if key == 'date':
-                pos_x = (surface.get_width() + self.news_article_img.get_width() / 2) - FONTS.SMALL.size(text)[0] - 10
+                pos_x = (surface.get_width() + self.news_article_img.get_width())/2 - FONTS.small.size(text)[0] - 10
 
             for word in words:
                 test_line = current_line + word + ' '
