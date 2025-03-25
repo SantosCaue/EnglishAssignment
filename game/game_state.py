@@ -3,7 +3,7 @@ import sys
 from .menu import Menu
 from .news_article import NewsArticle
 from .constants import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, ASSETS_PATH
-
+from .stamp import Stamp
 
 class GameState:
     def __init__(self):
@@ -16,6 +16,8 @@ class GameState:
 
         self.menu = Menu()
         self.news_article = NewsArticle()
+        self.red_stamp = Stamp('red')
+        self.green_stamp = Stamp('green')
         self.current_state = "menu"
         self.running = True
 
@@ -53,3 +55,6 @@ class GameState:
         elif self.current_state == "game":
             # Desenha a mesa e o artigo
             self.news_article.display(self.window)
+            self.red_stamp.display(self.window)
+            self.green_stamp.display(self.window)
+            
