@@ -2,6 +2,7 @@ import pygame
 import sys
 from .menu import Menu
 from .news_article import DraggableNewsArticle  # Alterado para DraggableNewsArticle
+from .stamp import Stamp 
 from .constants import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, ASSETS_PATH
 
 
@@ -20,6 +21,8 @@ class GameState:
 
         self.menu = Menu()
         self.news_article = DraggableNewsArticle()  # Alterado para DraggableNewsArticle
+        self.red_stamp = Stamp('red')
+        self.green_stamp = Stamp('green')
         self.current_state = "menu"
         self.running = True
 
@@ -46,6 +49,8 @@ class GameState:
                     self.running = False
             elif self.current_state == "game":
                 self.news_article.handle_event(event)  # Adicionado para lidar com eventos de arrastar
+                self.green_stamp.handle_event(event)
+                self.red_stamp.handle_event(event)
 
     def _update(self):
         pass
@@ -59,3 +64,5 @@ class GameState:
         elif self.current_state == "game":
             # Desenha a mesa e o artigo
             self.news_article.display(self.window)
+            self.red_stamp.display(self.window)
+            self.green_stamp.display(self.window)
