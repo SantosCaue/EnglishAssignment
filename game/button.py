@@ -14,7 +14,7 @@ class Button:
         pygame.draw.rect(surface, color, self.rect)
         pygame.draw.rect(surface, BLACK, self.rect, 2)
 
-        text_surf = FONTS.MEDIUM.render(self.text, True, BLACK)
+        text_surf = FONTS.medium.render(self.text, True, BLACK)
         text_rect = text_surf.get_rect(center=self.rect.center)
         surface.blit(text_surf, text_rect)
 

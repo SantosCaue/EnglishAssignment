@@ -12,12 +12,12 @@ class NewsArticle:
             'paragraph2': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi impedit voluptatibus saepe ad eum. Mollitia temporibus voluptatibus magni quo fugit, delectus velit libero praesentium, eligendi repellendus nesciunt tempora sequi. Nam!',
             'bibliography': 'Minoru Mineta'
         }
-        self.window_img = pygame.image.load(ASSETS_PATH['news_window']).convert_alpha()
+        self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
 
     def display(self, surface):
         width = surface.get_width()
-        window_x = (width / 2) - self.window_img.get_width() / 2
-        surface.blit(self.window_img, (window_x, 100))
+        window_x = (width / 2) - self.news_article_img.get_width() / 2
+        surface.blit(self.news_article_img, (window_x, 100))
 
         sections = self._render_text(surface, window_x)
         return sections
@@ -26,7 +26,7 @@ class NewsArticle:
         line_y_offset = 120
         news_line_spacing = 15
         sections = []
-        max_text_width = self.window_img.get_width() - 20  # Margem dentro da folha
+        max_text_width = self.news_article_img.get_width() - 20  # Margem dentro da folha
 
         for key, value in self.data.items():
             text = f'{key}: {value}'
@@ -41,9 +41,9 @@ class NewsArticle:
 
             for word in words:
                 test_line = current_line + word + ' '
-                if FONTS.SMALL.size(test_line)[0] > max_text_width and key not in ['date']:
+                if FONTS.small.size(test_line)[0] > max_text_width and key not in ['date']:
                     if current_line:
-                        rendered = FONTS.SMALL.render(current_line, True, BLACK)
+                        rendered = FONTS.small.render(current_line, True, BLACK)
                         surface.blit(rendered, (pos_x, line_y_offset))
                         sections.append(pygame.Rect(pos_x, pos_y, rendered.get_width(),
                                                     line_y_offset - pos_y + rendered.get_height()))
@@ -53,7 +53,7 @@ class NewsArticle:
                     current_line = test_line
 
             if current_line:
-                rendered = FONTS.SMALL.render(current_line, True, BLACK)
+                rendered = FONTS.small.render(current_line, True, BLACK)
                 surface.blit(rendered, (pos_x, line_y_offset))
                 sections.append(
                     pygame.Rect(pos_x, pos_y, rendered.get_width(), line_y_offset - pos_y + rendered.get_height()))

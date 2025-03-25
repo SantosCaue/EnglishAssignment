@@ -13,7 +13,6 @@ class GameState:
 
         # Carrega as imagens de fundo uma vez
         self.background = pygame.image.load(ASSETS_PATH['background']).convert()
-        self.table = pygame.image.load(ASSETS_PATH['table']).convert()
 
         self.menu = Menu()
         self.news_article = NewsArticle()
@@ -50,9 +49,7 @@ class GameState:
         self.window.blit(self.background, (0, 0))
 
         if self.current_state == "menu":
-            #TODO: Colocar imagem de menu
-            pass
+            self.menu.draw(self.window)
         elif self.current_state == "game":
             # Desenha a mesa e o artigo
-            self.window.blit(self.table, (0, 340))
             self.news_article.display(self.window)

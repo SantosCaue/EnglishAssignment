@@ -20,7 +20,7 @@ class Menu:
 
     def draw(self, surface):
         surface.blit(self.background, (0, 0))
-        title_surf = FONTS.LARGE.render(WINDOW_TITLE, True, WHITE)
+        title_surf = FONTS.large.render(WINDOW_TITLE, True, WHITE)
         title_rect = title_surf.get_rect(center=(WINDOW_WIDTH // 2, 150))
         surface.blit(title_surf, title_rect)
 

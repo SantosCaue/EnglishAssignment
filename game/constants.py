@@ -10,8 +10,7 @@ HIGHLIGHT_COLOR = (200, 100, 100)
 
 ASSETS_PATH = {
     'background': 'assets/sprites/background.png',
-    'news_window': 'assets/sprites/window.png',
-    'menu_teste': 'assets/sprites/menu_background_teste.png'
+    'news_article': 'assets/sprites/news_article.png',
 }
 
 class FontManager:
