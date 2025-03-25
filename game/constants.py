@@ -19,7 +19,8 @@ ASSETS_PATH = {
 class FontManager:
     def __init__(self):
         font_path = 'assets/fonts/MinecraftStandard.otf'
-        self.small = pygame.font.Font(font_path, 12)
+        self.small = pygame.font.Font(font_path, 10)
+        self.title = pygame.font.Font(font_path, 12)
         self.medium = pygame.font.Font(font_path, 24)
         self.large = pygame.font.Font(font_path, 36)
 
