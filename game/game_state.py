@@ -50,7 +50,8 @@ class GameState:
         self.window.blit(self.background, (0, 0))
 
         if self.current_state == "menu":
-            self.menu.draw(self.window)
+            #TODO: Colocar imagem de menu
+            pass
         elif self.current_state == "game":
             # Desenha a mesa e o artigo
             self.window.blit(self.table, (0, 340))
