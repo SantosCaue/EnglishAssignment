@@ -1,13 +1,13 @@
 import pygame
 import json
 import random
-from .constants import FONTS, BLACK, ASSETS_PATH
+from .constants import FONTS, BLACK, ASSETS_PATH, WINDOW_WIDTH, WINDOW_HEIGHT
 
 class DraggableNewsArticle:
     def __init__(self):
         self.data = self._load_random_article()
         self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
-        self.rect = self.news_article_img.get_rect(topleft=(100, 100))
+        self.rect = self.news_article_img.get_rect(center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
         self.dragging = False
 
     @staticmethod
@@ -31,9 +31,22 @@ class DraggableNewsArticle:
         elif event.type == pygame.MOUSEMOTION:
             if self.dragging:
                 self.mouse_x, self.mouse_y = event.pos
-                self.rect.x = self.mouse_x + self.offset_x
-                self.rect.y = self.mouse_y + self.offset_y
+                new_x = self.mouse_x + self.offset_x
+                new_y = self.mouse_y + self.offset_y
 
+                # Verificações para manter a imagem dentro dos limites da tela
+                if new_x < 0:
+                    new_x = 0
+                elif new_x + self.rect.width > WINDOW_WIDTH:
+                    new_x = WINDOW_WIDTH - self.rect.width
+
+                if new_y < 0:
+                    new_y = 0
+                elif new_y + self.rect.height > WINDOW_HEIGHT:
+                    new_y = WINDOW_HEIGHT - self.rect.height
+
+                self.rect.x = new_x
+                self.rect.y = new_y
     def display(self, surface):
         surface.blit(self.news_article_img, self.rect.topleft)
         self._render_text(surface)
@@ -50,14 +63,19 @@ class DraggableNewsArticle:
             pos_x = self.rect.x + 10
             pos_y = line_y_offset
 
+            if key == 'title':
+                font = FONTS.title
+            else:
+                font = FONTS.small
+
             if key == 'date':
-                pos_x = self.rect.x + (self.news_article_img.get_width() - FONTS.small.size(text)[0]) / 2
+                pos_x = self.rect.x + (self.news_article_img.get_width() - font.size(text)[0]) / 2
 
             for word in words:
                 test_line = current_line + word + ' '
-                if FONTS.small.size(test_line)[0] > max_text_width and key not in ['date']:
+                if font.size(test_line)[0] > max_text_width and key not in ['date']:
                     if current_line:
-                        rendered = FONTS.small.render(current_line, True, BLACK)
+                        rendered = font.render(current_line, True, BLACK)
                         surface.blit(rendered, (pos_x, line_y_offset))
                         line_y_offset += news_line_spacing
                         current_line = word + ' '
@@ -65,6 +83,12 @@ class DraggableNewsArticle:
                     current_line = test_line
 
             if current_line:
-                rendered = FONTS.small.render(current_line, True, BLACK)
+                rendered = font.render(current_line, True, BLACK)
                 surface.blit(rendered, (pos_x, line_y_offset))
                 line_y_offset += news_line_spacing
+
+            # Adiciona espaçamento extra após a data, título e parágrafo 2
+            if key in ['title', 'date', 'author', 'paragrafo2']:
+                line_y_offset += 15
+                if key != 'title':
+                    line_y_offset += 15

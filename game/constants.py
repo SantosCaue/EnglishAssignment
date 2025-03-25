@@ -12,14 +12,15 @@ ASSETS_PATH = {
     'background': 'assets/sprites/background.png',
     'news_article': 'assets/sprites/news_article.png',
     'red_stamp': 'assets/sprites/red_stamp.png',
-    'green_stamp': 'assets/sprites/green_stamp.png'
+    'green_stamp': 'assets/sprites/green_stamp.png',
     'cursor': 'assets/sprites/cursor.png',
 }
 
 class FontManager:
     def __init__(self):
         font_path = 'assets/fonts/MinecraftStandard.otf'
-        self.small = pygame.font.Font(font_path, 12)
+        self.small = pygame.font.Font(font_path, 10)
+        self.title = pygame.font.Font(font_path, 12)
         self.medium = pygame.font.Font(font_path, 24)
         self.large = pygame.font.Font(font_path, 36)
 
