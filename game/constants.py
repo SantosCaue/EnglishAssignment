@@ -12,6 +12,7 @@ ASSETS_PATH = {
     'background': 'assets/sprites/scenery/background.png',
 
     'news_article': 'assets/sprites/objects/news_article.png',
+    'selected_news_article': 'assets/sprites/objects/selected_news_article.png',
     'paperwork': 'assets/sprites/objects/paperwork.png',
     'red_stamp': 'assets/sprites/objects/red_stamp.png',
     'green_stamp': 'assets/sprites/objects/green_stamp.png',

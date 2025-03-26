@@ -22,7 +22,7 @@ class GameState:
         pygame.mouse.set_cursor(self.cursor)
 
         self.menu = Menu()
-        self.news_article = DraggableNewsArticle()  # Alterado para DraggableNewsArticle
+        self.news_article = DraggableNewsArticle()
         self.red_stamp = Stamp('red')
         self.green_stamp = Stamp('green')
         self.paperwork = Paperwork()
@@ -42,7 +42,6 @@ class GameState:
 
     def _handle_events(self):
         for event in pygame.event.get():
-            
             if event.type == UPDATE_TIMER_EVENT:
                 self.game_hud.update_timer()
                 
@@ -56,9 +55,9 @@ class GameState:
                 elif action == "quit":
                     self.running = False
             elif self.current_state == "game":
-                self.news_article.handle_event(event)  # Adicionado para lidar com eventos de arrastar
-                self.green_stamp.handle_event(event)
-                self.red_stamp.handle_event(event)
+                self.news_article.handle_event(event)
+                self.green_stamp.handle_event(event, self.news_article)
+                self.red_stamp.handle_event(event, self.news_article)
                 self.paperwork.handle_event(event)
 
     def _update(self):

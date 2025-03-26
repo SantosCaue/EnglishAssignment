@@ -7,11 +7,20 @@ class DraggableNewsArticle:
     def __init__(self):
         self.data = self._load_random_article()
         self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
+        self.selected_news_article_img = pygame.image.load(ASSETS_PATH['selected_news_article']).convert_alpha()
         self.rect = self.news_article_img.get_rect(center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
         self.dragging = False
         self.hovered_section = None
         self.section_rects = {}
+        self.is_selected = False
         
+
+    def set_selected(self, selected):
+        self.is_selected = selected
+        if self.is_selected:
+            self.news_article_img = self.selected_news_article_img
+        else:
+            self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
 
     @staticmethod
     def _load_random_article():
