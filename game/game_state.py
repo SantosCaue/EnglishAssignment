@@ -2,7 +2,8 @@ import pygame
 import sys
 from .menu import Menu
 from .news_article import DraggableNewsArticle  # Alterado para DraggableNewsArticle
-from .stamp import Stamp 
+from .stamp import Stamp
+from .paperwork import Paperwork
 from .constants import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, ASSETS_PATH
 
 
@@ -23,6 +24,7 @@ class GameState:
         self.news_article = DraggableNewsArticle()  # Alterado para DraggableNewsArticle
         self.red_stamp = Stamp('red')
         self.green_stamp = Stamp('green')
+        self.paperwork = Paperwork()
         self.current_state = "menu"
         self.running = True
 
@@ -63,6 +65,7 @@ class GameState:
             self.menu.draw(self.window)
         elif self.current_state == "game":
             # Desenha a mesa e o artigo
+            self.red_stamp.draw(self.window)
+            self.green_stamp.draw(self.window)
+            self.paperwork.draw(self.window)
             self.news_article.display(self.window)
-            self.red_stamp.display(self.window)
-            self.green_stamp.display(self.window)
