@@ -9,6 +9,9 @@ class DraggableNewsArticle:
         self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
         self.rect = self.news_article_img.get_rect(center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
         self.dragging = False
+        self.hovered_section = None
+        self.section_rects = {}
+        
 
     @staticmethod
     def _load_random_article():
@@ -47,6 +50,19 @@ class DraggableNewsArticle:
 
                 self.rect.x = new_x
                 self.rect.y = new_y
+            else:
+                self._check_hover(event.pos)
+                
+
+
+    def _check_hover(self, mouse_pos):
+        self.hovered_section = None
+        for section, rect in self.section_rects.items():
+            if rect.collidepoint(mouse_pos):
+                self.hovered_section = section
+                break
+
+                
     def display(self, surface):
         surface.blit(self.news_article_img, self.rect.topleft)
         self._render_text(surface)
@@ -60,7 +76,7 @@ class DraggableNewsArticle:
             text = f'{value}'
             words = text.split()
             current_line = ''
-            pos_x = self.rect.x + 10
+            pos_x = self.rect.x + 20
             pos_y = line_y_offset
 
             if key == 'title':
@@ -69,7 +85,10 @@ class DraggableNewsArticle:
                 font = FONTS.small
 
             if key == 'date':
-                pos_x = self.rect.x + (self.news_article_img.get_width() - font.size(text)[0]) / 2
+                pos_x = self.rect.x + self.news_article_img.get_width() - font.size(text)[0] - 10
+
+            # Inicializa o retângulo da seção com largura e altura zero
+            section_rect = pygame.Rect(pos_x, line_y_offset, 0, 0)
 
             for word in words:
                 test_line = current_line + word + ' '
@@ -77,6 +96,9 @@ class DraggableNewsArticle:
                     if current_line:
                         rendered = font.render(current_line, True, BLACK)
                         surface.blit(rendered, (pos_x, line_y_offset))
+                        line_width, line_height = font.size(current_line)
+                        # Expande o retângulo da seção para incluir a linha renderizada
+                        section_rect.union_ip(pygame.Rect(pos_x, line_y_offset, line_width, line_height))
                         line_y_offset += news_line_spacing
                         current_line = word + ' '
                 else:
@@ -85,6 +107,9 @@ class DraggableNewsArticle:
             if current_line:
                 rendered = font.render(current_line, True, BLACK)
                 surface.blit(rendered, (pos_x, line_y_offset))
+                line_width, line_height = font.size(current_line)
+                # Expande o retângulo da seção para incluir a última linha renderizada
+                section_rect.union_ip(pygame.Rect(pos_x, line_y_offset, line_width, line_height))
                 line_y_offset += news_line_spacing
 
             # Adiciona espaçamento extra após a data, título e parágrafo 2
@@ -92,3 +117,9 @@ class DraggableNewsArticle:
                 line_y_offset += 15
                 if key != 'title':
                     line_y_offset += 15
+
+            self.section_rects[key] = section_rect  # Armazena o retângulo da seção
+
+            # Desenha o contorno se o mouse estiver sobre a seção
+            if self.hovered_section == key:
+                pygame.draw.rect(surface, BLACK, section_rect, 2)  # Desenha o contorno em volta da seção

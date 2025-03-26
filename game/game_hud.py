@@ -18,14 +18,15 @@ class HUD:
             surface.blit(pygame.image.load(ASSETS_PATH['heart']).convert_alpha(), (10 + 60*(i), 70))
         minutes = self.time_remaining // 60
         seconds = self.time_remaining % 60
-        surface.blit(FONTS.medium.render(f"Time: {minutes:02}:{seconds:02}", True, WHITE), (10, 10))
-        surface.blit(FONTS.medium.render(f"Stamps: {self.correct_stamps}", True, WHITE), ( surface.get_width()- FONTS.medium.render(f"Stamps: {self.correct_stamps}", True, WHITE).get_width() - 40, 10))
+        surface.blit(FONTS.medium.render(f"Time: {minutes:02}:{seconds:02}", True, WHITE), ( surface.get_width()- FONTS.medium.render(f"Time: {minutes:02}:{seconds:02}", True, WHITE).get_width() - 10, 10))
+        surface.blit(FONTS.medium.render(f"Stamps: {self.correct_stamps}", True, WHITE), (10, 10))
         
     def update_timer(self) -> None:
         if self.time_remaining > 0:
             self.time_remaining -= 1
         else:
             self.stop_timer()
+            
             pygame.event.post(pygame.event.Event(GAME_OVER_EVENT))  
         
     def stop_timer(self) -> None:
