@@ -15,10 +15,4 @@ class Stamp:
             surface.blit(self.stamp_sprite, (surface.get_width() - 100 - self.stamp_sprite.get_width(), 500))
     
     def handle_event(self, event: pygame.event.Event) -> None:
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.coordinates.collidepoint(event.pos):   
-                match self.color:
-                    case 'red':
-                        raise NotImplementedError()
-                    case 'green':
-                        raise NotImplementedError()
+        print("")

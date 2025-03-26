@@ -4,7 +4,7 @@ from .menu import Menu
 from .news_article import DraggableNewsArticle  # Alterado para DraggableNewsArticle
 from .stamp import Stamp 
 from .constants import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, ASSETS_PATH
-
+from .game_hud import HUD, UPDATE_TIMER_EVENT
 
 class GameState:
     def __init__(self):
@@ -25,6 +25,7 @@ class GameState:
         self.green_stamp = Stamp('green')
         self.current_state = "menu"
         self.running = True
+        self.game_hud = HUD()
 
     def run(self):
         while self.running:
@@ -38,6 +39,10 @@ class GameState:
 
     def _handle_events(self):
         for event in pygame.event.get():
+            
+            if event.type == UPDATE_TIMER_EVENT:
+                self.game_hud.update_timer()
+                
             if event.type == pygame.QUIT:
                 self.running = False
 
@@ -63,6 +68,7 @@ class GameState:
             self.menu.draw(self.window)
         elif self.current_state == "game":
             # Desenha a mesa e o artigo
+            self.game_hud.draw(self.window)
             self.news_article.display(self.window)
             self.red_stamp.display(self.window)
             self.green_stamp.display(self.window)
