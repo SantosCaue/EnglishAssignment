@@ -7,9 +7,11 @@ class Paperwork:
         self.rect = self.paperwork_sprite.get_rect()
         self.rect.x = (WINDOW_WIDTH - self.rect.width) // 2
         self.rect.y = 476
+        self.is_hovered = False
 
     def draw(self, surface: pygame.Surface) -> None:
         surface.blit(self.paperwork_sprite, self.rect.topleft)
 
     def handle_event(self, event: pygame.event.Event) -> None:
-        pass
+        if event.type == pygame.MOUSEMOTION:
+            self.is_hovered = self.rect.collidepoint(event.pos)

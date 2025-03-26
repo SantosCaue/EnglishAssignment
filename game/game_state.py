@@ -16,9 +16,10 @@ class GameState:
         # Carrega as imagens de fundo uma vez
         self.background = pygame.image.load(ASSETS_PATH['background']).convert()
 
-        cursor_image = pygame.image.load(ASSETS_PATH['cursor']).convert_alpha()
-        cursor = pygame.cursors.Cursor((0, 0), cursor_image)
-        pygame.mouse.set_cursor(cursor)
+        self.default_cursor = pygame.image.load(ASSETS_PATH['cursor']).convert_alpha()
+        self.click_cursor = pygame.image.load(ASSETS_PATH['click']).convert_alpha()
+        self.cursor = pygame.cursors.Cursor((0, 0), self.default_cursor)
+        pygame.mouse.set_cursor(self.cursor)
 
         self.menu = Menu()
         self.news_article = DraggableNewsArticle()  # Alterado para DraggableNewsArticle
@@ -53,9 +54,26 @@ class GameState:
                 self.news_article.handle_event(event)  # Adicionado para lidar com eventos de arrastar
                 self.green_stamp.handle_event(event)
                 self.red_stamp.handle_event(event)
+                self.paperwork.handle_event(event)
 
     def _update(self):
-        pass
+        if self.current_state == "menu":
+            self.hovering = any(button.is_hovered for button in self.menu.buttons)
+        elif self.current_state == "game":
+            # Verifica se o cursor está sobre o news_article
+            if self.news_article.rect.collidepoint(pygame.mouse.get_pos()):
+                self.hovering = False
+            else:
+                self.hovering = (
+                        self.red_stamp.is_hovered or
+                        self.green_stamp.is_hovered or
+                        self.paperwork.is_hovered
+                )
+
+        new_cursor = self.click_cursor if self.hovering else self.default_cursor
+        if pygame.mouse.get_cursor() != new_cursor:
+            pygame.mouse.set_cursor(pygame.cursors.Cursor((0, 0), new_cursor))
+
 
     def _render(self):
         # Desenha o background em qualquer estado
@@ -64,7 +82,6 @@ class GameState:
         if self.current_state == "menu":
             self.menu.draw(self.window)
         elif self.current_state == "game":
-            # Desenha a mesa e o artigo
             self.red_stamp.draw(self.window)
             self.green_stamp.draw(self.window)
             self.paperwork.draw(self.window)

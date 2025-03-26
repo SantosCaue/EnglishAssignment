@@ -7,6 +7,7 @@ class Stamp:
         self.color = color
         self.rect = self.stamp_sprite.get_rect()
         self.rect.y = 506
+        self.is_hovered = False
         if self.color == 'red':
             self.rect.x = 600
         else:
@@ -16,11 +17,5 @@ class Stamp:
         surface.blit(self.stamp_sprite, self.rect.topleft)
 
     def handle_event(self, event: pygame.event.Event) -> None:
-        # if event.type == pygame.MOUSEBUTTONDOWN:
-        #     if self.rect.collidepoint(event.pos):
-        #         match self.color:
-        #             case 'red':
-        #                 raise NotImplementedError()
-        #             case 'green':
-        #                 raise NotImplementedError()
-        pass
+        if event.type == pygame.MOUSEMOTION:
+            self.is_hovered = self.rect.collidepoint(event.pos)
