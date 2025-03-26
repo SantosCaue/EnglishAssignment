@@ -5,7 +5,7 @@ from .news_article import DraggableNewsArticle  # Alterado para DraggableNewsArt
 from .stamp import Stamp
 from .paperwork import Paperwork
 from .constants import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, ASSETS_PATH
-from .game_hud import HUD, UPDATE_TIMER_EVENT
+from .hud import HUD, UPDATE_TIMER_EVENT
 
 class GameState:
     def __init__(self):
@@ -74,10 +74,10 @@ class GameState:
                         self.green_stamp.is_hovered or
                         self.paperwork.is_hovered
                 )
-
-        new_cursor = self.click_cursor if self.hovering else self.default_cursor
-        if pygame.mouse.get_cursor() != new_cursor:
-            pygame.mouse.set_cursor(pygame.cursors.Cursor((0, 0), new_cursor))
+        if not (self.red_stamp.dragging or self.green_stamp.dragging):
+            new_cursor = self.click_cursor if self.hovering else self.default_cursor
+            if pygame.mouse.get_cursor() != new_cursor:
+                pygame.mouse.set_cursor(pygame.cursors.Cursor((0, 0), new_cursor))
 
 
     def _render(self):

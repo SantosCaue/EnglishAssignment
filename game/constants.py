@@ -9,14 +9,19 @@ GRAY = (100, 100, 100)
 HIGHLIGHT_COLOR = (200, 100, 100)
 
 ASSETS_PATH = {
-    'background': 'assets/sprites/background.png',
-    'news_article': 'assets/sprites/news_article.png',
-    'red_stamp': 'assets/sprites/red_stamp.png',
-    'green_stamp': 'assets/sprites/green_stamp.png',
-    'cursor': 'assets/sprites/cursor.png',
-    'click': 'assets/sprites/click.png',
-    'paperwork': 'assets/sprites/paperwork.png',
-    'heart': 'assets/sprites/heart.png'
+    'background': 'assets/sprites/scenery/background.png',
+
+    'news_article': 'assets/sprites/objects/news_article.png',
+    'paperwork': 'assets/sprites/objects/paperwork.png',
+    'red_stamp': 'assets/sprites/objects/red_stamp.png',
+    'green_stamp': 'assets/sprites/objects/green_stamp.png',
+
+    'heart': 'assets/sprites/icons/heart.png',
+
+    'cursor': 'assets/sprites/cursors/cursor.png',
+    'click': 'assets/sprites/cursors/click.png',
+    'red_stamp_cursor': 'assets/sprites/cursors/red_stamp_cursor.png',
+    'green_stamp_cursor': 'assets/sprites/cursors/green_stamp_cursor.png',
 }
 
 class FontManager:
