@@ -10,6 +10,9 @@ HIGHLIGHT_COLOR = (200, 100, 100)
 
 ASSETS_PATH = {
     'background': 'assets/sprites/scenery/background.png',
+    'hud': 'assets/sprites/scenery/hud.png',
+    'clock_sheet': 'assets/sprites/scenery/clock_sheet.png',
+    'game_over_background': 'assets/sprites/scenery/game_over_background.png',
 
     'news_article': 'assets/sprites/objects/news_article.png',
     'selected_news_article': 'assets/sprites/objects/selected_news_article.png',
@@ -20,16 +23,18 @@ ASSETS_PATH = {
     'paperwork': 'assets/sprites/objects/paperwork.png',
     'empty_paperwork': 'assets/sprites/objects/empty_paperwork.png',
     'calendar': 'assets/sprites/objects/calendar.png',
-    'heart': 'assets/sprites/icons/heart.png',
-    'clock_sheet': 'assets/sprites/scenery/clock_sheet.png',
+
+    'error': 'assets/sprites/icons/error.png',
+    'bibliography': 'assets/sprites/icons/bibliography.png',
+    'formatting': 'assets/sprites/icons/formatting.png',
+    'ia_detector': 'assets/sprites/icons/ia_detector.png',
+    'banned_authors': 'assets/sprites/icons/banned_authors.png',
+
     'cursor': 'assets/sprites/cursors/cursor.png',
     'click': 'assets/sprites/cursors/click.png',
     'red_stamp_cursor': 'assets/sprites/cursors/red_stamp_cursor.png',
     'green_stamp_cursor': 'assets/sprites/cursors/green_stamp_cursor.png',
     'calendar_cursor': 'assets/sprites/cursors/calendar_cursor.png',
-    'game_over_background': 'assets/sprites/scenery/game_over_background.png',
-    'hud': 'assets/sprites/scenery/hud.png',
-    'error': 'assets/sprites/icons/error.png'
 }
 
 class FontManager:
