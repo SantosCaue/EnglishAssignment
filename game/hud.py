@@ -6,8 +6,8 @@ GAME_OVER_EVENT = pygame.USEREVENT + 2
 
 class HUD:  
     def __init__(self):
-        self.mistakes = 3
-        self.time_remaining = 3
+        self.mistakes = 0
+        self.time_remaining = 90
         self.correct_stamps = 0
         self.incorrect_stamps = 0
 
@@ -38,12 +38,12 @@ class HUD:
     def stamp_correct(self) -> None:
         self.correct_stamps += 1
     
-    def start_timer(self) -> None:
+    def start_timer() -> None:
         pygame.time.set_timer(UPDATE_TIMER_EVENT, 1000)
     
     def stamp_incorrect(self) -> None:
         self.incorrect_stamps += 1
-        self.HP -= 1
-        if self.HP == 0:
+        self.mistakes -= 1
+        if self.mistakes == 0:
             self.stop_timer()
             pygame.event.post(pygame.event.Event(GAME_OVER_EVENT))
