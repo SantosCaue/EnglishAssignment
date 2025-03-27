@@ -191,3 +191,4 @@ class NewsArticle:
         }
 
         return incongruences
+

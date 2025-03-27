@@ -89,10 +89,10 @@ class GameState:
                 self.green_stamp.handle_event(event, self.news_article)
                 self.red_stamp.handle_event(event, self.news_article)
                 self.calendar.handle_event(event)
-                self.bibliography.handle_event(event)
-                self.formatting.handle_event(event, self.news_article)
-                self.ia_detector.handle_event(event)
-                self.banned_authors.handle_event(event)
+                self.bibliography.handle_event(event, self.window)
+                self.formatting.handle_event(event, self.window, self.news_article)
+                self.ia_detector.handle_event(event, self.window)
+                self.banned_authors.handle_event(event, self.window)
 
     def _update(self):
         if self.current_state == "game_over":
