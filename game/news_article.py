@@ -8,10 +8,11 @@ class NewsArticle:
         self.data = self._load_random_article()
         self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
         self.selected_news_article_img = pygame.image.load(ASSETS_PATH['selected_news_article']).convert_alpha()
+        print(self.selected_news_article_img.get_width())
         self.approved_img = pygame.image.load(ASSETS_PATH['approved_article']).convert_alpha()
         self.denied_img = pygame.image.load(ASSETS_PATH['denied_article']).convert_alpha()
         self.rect = self.news_article_img.get_rect(center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
-
+        
         self.red_stamp = red_stamp
         self.green_stamp = green_stamp
 
