@@ -167,14 +167,13 @@ class NewsArticle:
                     self.calendar.dragging or self.bibliography.dragging or self.banned_authors.dragging or self.ia_detector.dragging):
                 pygame.draw.rect(surface, BLACK, section_rect, 2)  # Desenha o contorno em volta da seção
                 
-            def verify(self, news_article: NewsArticle) -> dict[str: bool]:
-                incongruences = {}
-                incongruences["banned_authors"] = self.data["author"] in BANNED_AUTHORS_LIST
-                incongruences["bibliography"] = self.data["bibliography"] in BANNED_BIBLIOGRAPHY_LIST
-                incongruences["formatting"] = False
-                for i, val in self.data:
-                    if val.empty():
-                        incongruences["formatting"] = True
-                incongruences["calendar"] = datetime.strptime("07/03/2006", "%d/%m/%Y") < datetime.strptime(self.data["date"], "%d/%m/%Y")                
-                incongruences["ia_detector"] = self.data["image"] == "AI"  
-                return incongruences
+    def verify(self) -> dict[str: bool]:
+        incongruences = {
+            "banned_authors": self.data["author"] in BANNED_AUTHORS_LIST,
+            "bibliography": self.data["bibliography"] in BANNED_BIBLIOGRAPHY_LIST,
+            "formatting": any(val.empty() for val in self.data.values()),
+            "calendar": datetime.strptime("07/03/2006", "%d/%m/%Y") < datetime.strptime(self.data["date"],"%d/%m/%Y"),
+            "ia_detector": self.data["image"] == "AI"
+        }
+
+        return incongruences
