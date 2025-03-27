@@ -6,7 +6,8 @@ from .stamp import Stamp
 from .paperwork import Paperwork
 from .calendar import Calendar
 from .constants import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, ASSETS_PATH
-from .hud import HUD, UPDATE_TIMER_EVENT
+from .hud import HUD, UPDATE_TIMER_EVENT, GAME_OVER_EVENT
+from .game_over import GameOver
 
 class GameState:
     def __init__(self):
@@ -22,6 +23,7 @@ class GameState:
         self.cursor = pygame.cursors.Cursor((0, 0), self.default_cursor)
         pygame.mouse.set_cursor(self.cursor)
 
+        self.game_over = GameOver()
         self.menu = Menu()
         self.news_article = DraggableNewsArticle()
         self.red_stamp = Stamp('red')
@@ -49,15 +51,30 @@ class GameState:
     def _handle_events(self):
         for event in pygame.event.get():
             if event.type == UPDATE_TIMER_EVENT:
+                print(self.game_hud.time_remaining)
                 self.game_hud.update_timer()
+                
+            if event.type == GAME_OVER_EVENT:
+                self.game_hud.stop_timer()
+                self.current_state = "game_over"
                 
             if event.type == pygame.QUIT:
                 self.running = False
+
+            if self.current_state == "game_over":
+                action = self.game_over.handle_event(event)
+                if action == "restart":
+                    self.current_state = "game"
+                    self.game_hud = HUD()
+                    self.game_hud.start_timer()
+                elif action == "quit":
+                    self.running = False
 
             if self.current_state == "menu":
                 action = self.menu.handle_event(event)
                 if action == "start":
                     self.current_state = "game"
+                    self.game_hud.start_timer()
                 elif action == "quit":
                     self.running = False
             elif self.current_state == "game":
@@ -68,7 +85,9 @@ class GameState:
                 self.calendar.handle_event(event)
 
     def _update(self):
-        if self.current_state == "menu":
+        if self.current_state == "game_over":
+            self.hovering = any(button.is_hovered for button in self.game_over.buttons)
+        elif self.current_state == "menu":
             self.hovering = any(button.is_hovered for button in self.menu.buttons)
         elif self.current_state == "game":
             if self.news_article.rect.collidepoint(pygame.mouse.get_pos()):
@@ -87,13 +106,14 @@ class GameState:
 
 
     def _render(self):
-        # Desenha o background em qualquer estado
         self.window.blit(self.background, (0, 0))
 
         if self.current_state == "menu":
             self.menu.draw(self.window)
+        elif self.current_state == "game_over":
+            self.game_over.draw(self.window)
         elif self.current_state == "game":
-            self.window.blit(self.clocks[self.game_hud.time_remaining % 12], (360, 198))
+            self.window.blit(self.clocks[self.game_hud.time_remaining % 12], (367, 198))
             self.red_stamp.draw(self.window)
             self.green_stamp.draw(self.window)
             self.paperwork.draw(self.window)

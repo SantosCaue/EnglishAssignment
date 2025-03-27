@@ -4,22 +4,25 @@ import pygame
 UPDATE_TIMER_EVENT = pygame.USEREVENT + 1
 GAME_OVER_EVENT = pygame.USEREVENT + 2
 
-class HUD:
+class HUD:  
     def __init__(self):
-        self.HP = 3
-        self.time_remaining = 90
+        self.mistakes = 3
+        self.time_remaining = 3
         self.correct_stamps = 0
         self.incorrect_stamps = 0
-        pygame.time.set_timer(UPDATE_TIMER_EVENT, 1000)
 
         
     def draw(self, surface: pygame.Surface) -> None:
-        for i in range(self.HP):
-            surface.blit(pygame.image.load(ASSETS_PATH['heart']).convert_alpha(), (10 + 60*(i), 70))
+        surface.blit(pygame.image.load(ASSETS_PATH['hud']).convert_alpha(), (0, 0))
+        for i in range(self.mistakes):
+            surface.blit(pygame.image.load(ASSETS_PATH['error']).convert_alpha(), (40 + 52*(i), 44))
         minutes = self.time_remaining // 60
         seconds = self.time_remaining % 60
-        surface.blit(FONTS.medium.render(f"Time: {minutes:02}:{seconds:02}", True, WHITE), ( surface.get_width()- FONTS.medium.render(f"Time: {minutes:02}:{seconds:02}", True, WHITE).get_width() - 10, 10))
-        surface.blit(FONTS.medium.render(f"Stamps: {self.correct_stamps}", True, WHITE), (10, 10))
+    
+        surface.blit(FONTS.title.render("Timer", True, WHITE), (600, 16 - FONTS.title.render("Timer", True, WHITE).get_height()/2))      
+        time_text = FONTS.title.render(f"{minutes:02}:{seconds:02}", True, WHITE)
+        surface.blit(time_text, (687 - time_text.get_width()/2, 63 - time_text.get_height()/2))
+        surface.blit(FONTS.title.render(f"{self.correct_stamps}", True, WHITE), (190 - FONTS.title.render(f"{self.correct_stamps}", True, WHITE).get_width(), 16 - FONTS.title.render(f"{self.correct_stamps}", True, WHITE).get_height()/2))
         
     def update_timer(self) -> None:
         if self.time_remaining > 0:
@@ -34,6 +37,9 @@ class HUD:
         
     def stamp_correct(self) -> None:
         self.correct_stamps += 1
+    
+    def start_timer(self) -> None:
+        pygame.time.set_timer(UPDATE_TIMER_EVENT, 1000)
     
     def stamp_incorrect(self) -> None:
         self.incorrect_stamps += 1

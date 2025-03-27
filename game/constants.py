@@ -17,7 +17,6 @@ ASSETS_PATH = {
     'green_stamp': 'assets/sprites/objects/green_stamp.png',
     'paperwork': 'assets/sprites/objects/paperwork.png',
     'calendar': 'assets/sprites/objects/calendar.png',
-
     'heart': 'assets/sprites/icons/heart.png',
     'clock_sheet': 'assets/sprites/scenery/clock_sheet.png',
     'cursor': 'assets/sprites/cursors/cursor.png',
@@ -25,6 +24,9 @@ ASSETS_PATH = {
     'red_stamp_cursor': 'assets/sprites/cursors/red_stamp_cursor.png',
     'green_stamp_cursor': 'assets/sprites/cursors/green_stamp_cursor.png',
     'calendar_cursor': 'assets/sprites/cursors/calendar_cursor.png',
+    'game_over_background': 'assets/sprites/scenery/game_over_background.png',
+    'hud': 'assets/sprites/scenery/hud.png',
+    'error': 'assets/sprites/icons/error.png'
 }
 
 class FontManager:
