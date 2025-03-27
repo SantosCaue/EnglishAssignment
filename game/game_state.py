@@ -29,12 +29,12 @@ class GameState:
         self.game_hud = HUD()
         self.red_stamp = Stamp('red')
         self.green_stamp = Stamp('green')
-        self.bibliography = Item('bibliography', 244, 22)
+        self.bibliography = Item('locked', 244, 22)
         self.formatting = Item('formatting', 332, 22)
-        self.ia_detector = Item('ia_detector', 422, 22)
-        self.banned_authors = Item('banned_authors', 510, 22)
+        self.ai_detector = Item('ai_detector', 422, 22)
+        self.banned_authors = Item('locked', 510, 22)
         self.calendar = Calendar()
-        self.news_article = NewsArticle(self.calendar, self.bibliography, self.ia_detector, self.banned_authors, self.game_hud)  # Pass the stamp references
+        self.news_article = NewsArticle(self.calendar, self.bibliography, self.ai_detector, self.banned_authors, self.game_hud)  # Pass the stamp references
         clock_sheet = pygame.image.load(ASSETS_PATH['clock_sheet']).convert_alpha()
         self.clocks = []
         for i in range(11, -1, -1):
@@ -88,10 +88,10 @@ class GameState:
                     self.news_article.handle_event(event)
                 self.green_stamp.handle_event(event, self.news_article)
                 self.red_stamp.handle_event(event, self.news_article)
-                self.calendar.handle_event(event)
+                self.calendar.handle_event(event, self.window, self.news_article)
                 self.bibliography.handle_event(event, self.window)
                 self.formatting.handle_event(event, self.window, self.news_article)
-                self.ia_detector.handle_event(event, self.window)
+                self.ai_detector.handle_event(event, self.window, self.news_article)
                 self.banned_authors.handle_event(event, self.window)
 
     def _update(self):
@@ -110,11 +110,11 @@ class GameState:
                         self.calendar.is_hovered or
                         self.bibliography.is_hovered or
                         self.formatting.is_hovered or
-                        self.ia_detector.is_hovered or
+                        self.ai_detector.is_hovered or
                         self.banned_authors.is_hovered
                 )
         if not (self.red_stamp.dragging or self.green_stamp.dragging or self.calendar.dragging or
-                self.bibliography.dragging or self.formatting.dragging or self.ia_detector.dragging or self.banned_authors.dragging):
+                self.bibliography.dragging or self.formatting.dragging or self.ai_detector.dragging or self.banned_authors.dragging):
             new_cursor = self.click_cursor if self.hovering else self.default_cursor
             if pygame.mouse.get_cursor() != new_cursor:
                 pygame.mouse.set_cursor(pygame.cursors.Cursor((0, 0), new_cursor))
@@ -123,7 +123,7 @@ class GameState:
             self.news_article.update_animation()
             if not self.news_article.animation_in_progress:
                 pygame.time.delay(500)
-                self.news_article = self.paperwork.reset(self.calendar, self.bibliography, self.ia_detector, self.banned_authors, self.game_hud)
+                self.news_article = self.paperwork.reset(self.calendar, self.bibliography, self.ai_detector, self.banned_authors, self.game_hud)
 
 
     def _render(self):
@@ -140,7 +140,7 @@ class GameState:
             self.green_stamp.draw(self.window)
             self.bibliography.draw(self.window)
             self.formatting.draw(self.window)
-            self.ia_detector.draw(self.window)
+            self.ai_detector.draw(self.window)
             self.banned_authors.draw(self.window)
             self.paperwork.draw(self.window)
             self.calendar.draw(self.window)

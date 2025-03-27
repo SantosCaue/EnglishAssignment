@@ -7,7 +7,7 @@ from .constants import FONTS, BLACK, ASSETS_PATH, WINDOW_WIDTH, WINDOW_HEIGHT, B
 import os
 
 class NewsArticle:
-    def __init__(self, calendar, bibliography, ia_detector, banned_authors, hud):
+    def __init__(self, calendar, bibliography, ai_detector, banned_authors, hud):
         self.data = self._load_random_article()
         self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
         self.selected_news_article_img = pygame.image.load(ASSETS_PATH['selected_news_article']).convert_alpha()
@@ -18,7 +18,7 @@ class NewsArticle:
         self.calendar = calendar
         self.bibliography = bibliography
         self.banned_authors = banned_authors
-        self.ia_detector = ia_detector
+        self.ai_detector = ai_detector
         self.random_ai_image = random.choice(os.listdir(ASSETS_PATH["ai_imgs_dir"]))
         self.hud = hud
 
@@ -33,7 +33,7 @@ class NewsArticle:
 
         self.incogruences = self._get_incogruences()
         self.has_incogruences = any(self.incogruences.values())
-        
+
 
     def set_selected(self, selected):
         self.is_selected = selected
@@ -172,8 +172,9 @@ class NewsArticle:
 
                 # Adiciona espaçamento extra após a data, título e parágrafo 2
                 if key in ['title', 'date', 'author', 'paragraph2']:
-                    line_y_offset += 15
-                    if key != 'title':
+                    if key == 'date' or key == 'title':
+                        line_y_offset += 15
+                    else:
                         line_y_offset += 15
             elif key == "image" and value != "":
                 image = pygame.image.load(os.path.join(ASSETS_PATH["ai_imgs_dir"], self.random_ai_image)).convert() if value == "AI" else pygame.image.load(os.path.join(ASSETS_PATH["imgs_dir"], value)).convert()
@@ -184,21 +185,21 @@ class NewsArticle:
                 surface.blit(image, (pos_x, line_y_offset))
                 line_y_offset += news_line_spacing + image.get_height()
 
-                
+
             self.section_rects[key] = section_rect  # Armazena o retângulo da seção
-            
+
             # Desenha o contorno se o mouse estiver sobre a seção
             if self.hovered_section == key and (
-                    self.calendar.dragging or self.bibliography.dragging or self.banned_authors.dragging or self.ia_detector.dragging):
+                    self.calendar.dragging or self.bibliography.dragging or self.banned_authors.dragging or self.ai_detector.dragging):
                 pygame.draw.rect(surface, BLACK, section_rect, 2)  # Desenha o contorno em volta da seção
-                
+
     def _get_incogruences(self) -> dict[str: bool]:
         incongruences = {
             "banned_authors": self.data["author"] in BANNED_AUTHORS_LIST,
             "bibliography": self.data["bibliography"] in BANNED_BIBLIOGRAPHY_LIST,
             "formatting": any(val == "" for val in self.data.values()),
             "calendar": datetime.strptime("07/03/2006", "%d/%m/%Y") < datetime.strptime(self.data["date"],"%d/%m/%Y"),
-            "ia_detector": self.data["image"] == "AI"
+            "ai_detector": self.data["image"] == "AI"
         }
 
         return incongruences

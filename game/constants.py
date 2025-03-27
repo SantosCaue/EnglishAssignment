@@ -10,6 +10,7 @@ HIGHLIGHT_COLOR = (200, 100, 100)
 
 ASSETS_PATH = {
     'background': 'assets/sprites/scenery/background.png',
+    'menu': 'assets/sprites/scenery/menu.png',
     'hud': 'assets/sprites/scenery/hud.png',
     'clock_sheet': 'assets/sprites/scenery/clock_sheet.png',
     'game_over_background': 'assets/sprites/scenery/game_over_background.png',
@@ -27,8 +28,9 @@ ASSETS_PATH = {
     'error': 'assets/sprites/icons/error.png',
     'bibliography': 'assets/sprites/icons/bibliography.png',
     'formatting': 'assets/sprites/icons/formatting.png',
-    'ia_detector': 'assets/sprites/icons/ia_detector.png',
+    'ai_detector': 'assets/sprites/icons/ai_detector.png',
     'banned_authors': 'assets/sprites/icons/banned_authors.png',
+    'locked': 'assets/sprites/icons/locked.png',
 
     'cursor': 'assets/sprites/cursors/cursor.png',
     'click': 'assets/sprites/cursors/click.png',
@@ -36,7 +38,7 @@ ASSETS_PATH = {
     'green_stamp_cursor': 'assets/sprites/cursors/green_stamp_cursor.png',
     'calendar_cursor': 'assets/sprites/cursors/calendar_cursor.png',
     'imgs_dir': 'assets/news_articles/imgs/',
-    'ai_imgs_dir': 'assets/news_articles/ia_imgs/'
+    'ai_imgs_dir': 'assets/news_articles/ai_imgs/'
 }
 
 class FontManager:
