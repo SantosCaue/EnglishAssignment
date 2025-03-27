@@ -34,7 +34,7 @@ class GameState:
         self.ia_detector = Item('ia_detector', 422, 22)
         self.banned_authors = Item('banned_authors', 510, 22)
         self.calendar = Calendar()
-        self.news_article = NewsArticle(self.calendar, self.bibliography, self.ia_detector, self.banned_authors)  # Pass the stamp references
+        self.news_article = NewsArticle(self.calendar, self.bibliography, self.ia_detector, self.banned_authors, self.game_hud)  # Pass the stamp references
         clock_sheet = pygame.image.load(ASSETS_PATH['clock_sheet']).convert_alpha()
         self.clocks = []
         for i in range(11, -1, -1):
@@ -123,7 +123,7 @@ class GameState:
             self.news_article.update_animation()
             if not self.news_article.animation_in_progress:
                 pygame.time.delay(500)
-                self.news_article = self.paperwork.reset(self.calendar, self.bibliography, self.ia_detector, self.banned_authors)
+                self.news_article = self.paperwork.reset(self.calendar, self.bibliography, self.ia_detector, self.banned_authors, self.game_hud)
 
 
     def _render(self):
