@@ -36,4 +36,6 @@ class Stamp:
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1 and self.dragging:
             self.dragging = False
             pygame.mouse.set_cursor(pygame.cursors.Cursor((0, 0), pygame.image.load(ASSETS_PATH['cursor']).convert_alpha()))
-            news_article.set_selected(False)
+            if news_article.is_selected:
+                news_article.start_animation(self.color == 'green')
+                news_article.set_selected(False)

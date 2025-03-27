@@ -8,6 +8,8 @@ class NewsArticle:
         self.data = self._load_random_article()
         self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
         self.selected_news_article_img = pygame.image.load(ASSETS_PATH['selected_news_article']).convert_alpha()
+        self.approved_img = pygame.image.load(ASSETS_PATH['approved_article']).convert_alpha()
+        self.denied_img = pygame.image.load(ASSETS_PATH['denied_article']).convert_alpha()
         self.rect = self.news_article_img.get_rect(center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
 
         self.red_stamp = red_stamp
@@ -18,6 +20,9 @@ class NewsArticle:
         self.section_rects = {}
         self.is_selected = False
         self.is_visible = False
+        self.is_approved = None
+        self.animation_in_progress = False
+        self.animation_start_time = None
 
 
 
@@ -36,37 +41,37 @@ class NewsArticle:
             return random.choice(news_articles)
 
     def handle_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.rect.collidepoint(event.pos):
-                self.dragging = True
-                self.mouse_x, self.mouse_y = event.pos
-                self.offset_x = self.rect.x - self.mouse_x
-                self.offset_y = self.rect.y - self.mouse_y
+        if not self.animation_in_progress:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if self.rect.collidepoint(event.pos):
+                    self.dragging = True
+                    self.mouse_x, self.mouse_y = event.pos
+                    self.offset_x = self.rect.x - self.mouse_x
+                    self.offset_y = self.rect.y - self.mouse_y
 
-        elif event.type == pygame.MOUSEBUTTONUP:
-            self.dragging = False
+            elif event.type == pygame.MOUSEBUTTONUP:
+                self.dragging = False
 
-        elif event.type == pygame.MOUSEMOTION:
-            if self.dragging:
-                self.mouse_x, self.mouse_y = event.pos
-                new_x = self.mouse_x + self.offset_x
-                new_y = self.mouse_y + self.offset_y
+            elif event.type == pygame.MOUSEMOTION:
+                if self.dragging:
+                    self.mouse_x, self.mouse_y = event.pos
+                    new_x = self.mouse_x + self.offset_x
+                    new_y = self.mouse_y + self.offset_y
 
-                # Verificações para manter a imagem dentro dos limites da tela
-                if new_x < 0:
-                    new_x = 0
-                elif new_x + self.rect.width > WINDOW_WIDTH:
-                    new_x = WINDOW_WIDTH - self.rect.width
+                    if new_x < 0:
+                        new_x = 0
+                    elif new_x + self.rect.width > WINDOW_WIDTH:
+                        new_x = WINDOW_WIDTH - self.rect.width
 
-                if new_y < 0:
-                    new_y = 0
-                elif new_y + self.rect.height > WINDOW_HEIGHT:
-                    new_y = WINDOW_HEIGHT - self.rect.height
+                    if new_y < 0:
+                        new_y = 0
+                    elif new_y + self.rect.height > WINDOW_HEIGHT:
+                        new_y = WINDOW_HEIGHT - self.rect.height
 
-                self.rect.x = new_x
-                self.rect.y = new_y
-            else:
-                self._check_hover(event.pos)
+                    self.rect.x = new_x
+                    self.rect.y = new_y
+                else:
+                    self._check_hover(event.pos)
 
 
 
@@ -77,9 +82,29 @@ class NewsArticle:
                 self.hovered_section = section
                 break
 
+    def start_animation(self, approved):
+        self.is_approved = approved
+        self.animation_in_progress = True
+        self.animation_start_time = pygame.time.get_ticks()
+
+
+    def update_animation(self):
+        if self.animation_in_progress:
+            current_time = pygame.time.get_ticks()
+            if current_time - self.animation_start_time > 500:
+                direction = -1 if self.is_approved else 1
+                self.rect.x += direction * 10
+                if self.rect.right < -15 or self.rect.left > WINDOW_WIDTH + 15:
+                    self.is_visible = False
+                    self.animation_in_progress = False
+
     def display(self, surface):
         if self.is_visible:
-            surface.blit(self.news_article_img, self.rect.topleft)
+            if self.animation_in_progress:
+                if self.animation_in_progress:
+                    surface.blit(self.approved_img if self.is_approved else self.denied_img, self.rect.topleft)
+            else:
+                surface.blit(self.news_article_img, self.rect.topleft)
             self._render_text(surface)
 
     def _render_text(self, surface):

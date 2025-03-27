@@ -85,6 +85,11 @@ class GameState:
             if pygame.mouse.get_cursor() != new_cursor:
                 pygame.mouse.set_cursor(pygame.cursors.Cursor((0, 0), new_cursor))
 
+        if self.news_article.animation_in_progress:
+            self.news_article.update_animation()
+            if not self.news_article.animation_in_progress:
+                pygame.time.delay(500)
+                self.news_article = self.paperwork.reset(self.red_stamp, self.green_stamp)
 
 
     def _render(self):

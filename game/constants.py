@@ -13,6 +13,8 @@ ASSETS_PATH = {
 
     'news_article': 'assets/sprites/objects/news_article.png',
     'selected_news_article': 'assets/sprites/objects/selected_news_article.png',
+    'approved_article': 'assets/sprites/objects/approved_article.png',
+    'denied_article': 'assets/sprites/objects/denied_article.png',
     'red_stamp': 'assets/sprites/objects/red_stamp.png',
     'green_stamp': 'assets/sprites/objects/green_stamp.png',
     'paperwork': 'assets/sprites/objects/paperwork.png',

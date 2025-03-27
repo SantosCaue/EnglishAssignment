@@ -26,3 +26,7 @@ class Paperwork:
                 self.is_empty = True  # Alterna para empty_paperwork
                 news_article.is_visible = True  # Torna o artigo visível
                 self.is_hovered = False
+
+    def reset(self, red_stamp, green_stamp):
+        self.is_empty = False
+        return NewsArticle(red_stamp, green_stamp)
