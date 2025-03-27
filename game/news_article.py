@@ -4,16 +4,21 @@ import random
 from .constants import FONTS, BLACK, ASSETS_PATH, WINDOW_WIDTH, WINDOW_HEIGHT
 
 class NewsArticle:
-    def __init__(self):
+    def __init__(self, red_stamp, green_stamp):
         self.data = self._load_random_article()
         self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
         self.selected_news_article_img = pygame.image.load(ASSETS_PATH['selected_news_article']).convert_alpha()
         self.rect = self.news_article_img.get_rect(center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
+
+        self.red_stamp = red_stamp
+        self.green_stamp = green_stamp
+
         self.dragging = False
         self.hovered_section = None
         self.section_rects = {}
         self.is_selected = False
         self.is_visible = False
+
 
 
     def set_selected(self, selected):
@@ -27,8 +32,8 @@ class NewsArticle:
     def _load_random_article():
         with open('assets/news_articles/news_data.json', 'r') as file:
             news_data = json.load(file)
-            level1_articles = news_data['level1']
-            return random.choice(level1_articles)
+            news_articles = news_data
+            return random.choice(news_articles)
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -130,5 +135,5 @@ class NewsArticle:
             self.section_rects[key] = section_rect  # Armazena o retângulo da seção
 
             # Desenha o contorno se o mouse estiver sobre a seção
-            if self.hovered_section == key:
+            if self.hovered_section == key and not (self.red_stamp.dragging or self.green_stamp.dragging):
                 pygame.draw.rect(surface, BLACK, section_rect, 2)  # Desenha o contorno em volta da seção

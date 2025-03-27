@@ -14,7 +14,7 @@ class GameState:
         self.window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption(WINDOW_TITLE)
 
-        # Carrega as imagens de fundo uma vez
+        # Load background images once
         self.background = pygame.image.load(ASSETS_PATH['background']).convert()
 
         self.default_cursor = pygame.image.load(ASSETS_PATH['cursor']).convert_alpha()
@@ -23,9 +23,9 @@ class GameState:
         pygame.mouse.set_cursor(self.cursor)
 
         self.menu = Menu()
-        self.news_article = NewsArticle()
         self.red_stamp = Stamp('red')
         self.green_stamp = Stamp('green')
+        self.news_article = NewsArticle(self.red_stamp, self.green_stamp)  # Pass the stamp references
         clock_sheet = pygame.image.load(ASSETS_PATH['clock_sheet']).convert_alpha()
         self.clocks = []
         for i in range(11, -1, -1):
@@ -35,7 +35,6 @@ class GameState:
         self.current_state = "menu"
         self.running = True
         self.game_hud = HUD()
-
     def run(self):
         while self.running:
             self._handle_events()

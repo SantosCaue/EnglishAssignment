@@ -1,12 +1,11 @@
-{
-    "level1": [
-        {
-            "date": "01/01/2023",
-            "title": "New Year Celebrations Around the World",
-            "author": "John Smith",
-            "paragrafo1": "People in different countries are celebrating the New Year with various traditions.",
-            "paragrafo2": "Fireworks, parties, and family gatherings are common ways to ring in the new year.",
-            "bibliography": "Source: Global News Network"
-        }
-    ]
-}
+[
+    {
+        "date": "01/01/2023",
+        "title": "New Year Celebrations Around the World",
+        "author": "John Smith",
+        "paragraph1": "People in different countries are celebrating the New Year with various traditions.",
+        "image": "",
+        "paragraph2": "Fireworks, parties, and family gatherings are common ways to ring in the new year.",
+        "bibliography": "Source: Global News Network"
+    }
+]
