@@ -5,6 +5,7 @@ from .news_article import NewsArticle  # Alterado para DraggableNewsArticle
 from .stamp import Stamp
 from .paperwork import Paperwork
 from .calendar import Calendar
+from .item import Item
 from .constants import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, ASSETS_PATH, UPDATE_TIMER_EVENT, GAME_OVER_EVENT
 from .hud import HUD
 from .game_over import GameOver
@@ -25,6 +26,7 @@ class GameState:
 
         self.game_over = GameOver()
         self.menu = Menu()
+        self.game_hud = HUD()
         self.red_stamp = Stamp('red')
         self.green_stamp = Stamp('green')
         self.news_article = NewsArticle(self.red_stamp, self.green_stamp)  # Pass the stamp references
@@ -34,9 +36,13 @@ class GameState:
             self.clocks.append(clock_sheet.subsurface(((i % 4) * 80, (i // 4) * 80, 80, 80)))
         self.paperwork = Paperwork()
         self.calendar = Calendar()
+        self.bibliography = Item('bibliography', 236, 14)
+        self.formatting = Item('formatting', 324, 14)
+        self.ia_detector = Item('ia_detector', 412, 14)
+        self.banned_authors = Item('banned_authors', 502, 14)
+
         self.current_state = "menu"
         self.running = True
-        self.game_hud = HUD()
 
     def run(self):
         while self.running:
@@ -83,6 +89,10 @@ class GameState:
                 self.green_stamp.handle_event(event, self.news_article)
                 self.red_stamp.handle_event(event, self.news_article)
                 self.calendar.handle_event(event)
+                self.bibliography.handle_event(event)
+                self.formatting.handle_event(event)
+                self.ia_detector.handle_event(event)
+                self.banned_authors.handle_event(event)
 
     def _update(self):
         if self.current_state == "game_over":
@@ -97,7 +107,11 @@ class GameState:
                         self.red_stamp.is_hovered or
                         self.green_stamp.is_hovered or
                         self.paperwork.is_hovered or
-                        self.calendar.is_hovered
+                        self.calendar.is_hovered or
+                        self.bibliography.is_hovered or
+                        self.formatting.is_hovered or
+                        self.ia_detector.is_hovered or
+                        self.banned_authors.is_hovered
                 )
         if not (self.red_stamp.dragging or self.green_stamp.dragging or self.calendar.dragging):
             new_cursor = self.click_cursor if self.hovering else self.default_cursor
@@ -120,10 +134,14 @@ class GameState:
             self.game_over.draw(self.window)
         elif self.current_state == "game":
             self.window.blit(self.clocks[self.game_hud.time_remaining % 12], (367, 198))
+            self.game_hud.draw(self.window)
+            self.bibliography.draw(self.window)
+            self.formatting.draw(self.window)
+            self.ia_detector.draw(self.window)
+            self.banned_authors.draw(self.window)
             self.red_stamp.draw(self.window)
             self.green_stamp.draw(self.window)
             self.paperwork.draw(self.window)
-            self.game_hud.draw(self.window)
             self.calendar.draw(self.window)
             if self.news_article.is_visible:
                 self.news_article.display(self.window)
