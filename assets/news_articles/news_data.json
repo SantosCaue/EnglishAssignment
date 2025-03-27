@@ -16,5 +16,333 @@
         "image": "",
         "paragraph2": "EU ESOTU FINCAO COMPLETAMETNE MALUCOOOO.",
         "bibliography": "Source: Global News Network"
+    },
+    {
+        "date": "02/01/2023",
+        "title": "Scientists Discover New Planet",
+        "author": "Jane Doe",
+        "paragrafo1": "Astronomers have identified a new planet in a distant galaxy.",
+        "paragrafo2": "The planet is said to be similar in size to Earth and may have the potential to support life.",
+        "bibliography": "Source: Space Exploration Journal"
+    },
+    {
+        "date": "03/01/2023",
+        "title": "Tech Giant Launches Revolutionary Smartphone",
+        "author": "Michael Johnson",
+        "paragrafo1": "A leading technology company has unveiled its latest smartphone model.",
+        "paragrafo2": "The new device boasts advanced features and a sleek design, setting a new standard in the industry.",
+        "bibliography": "Source: Tech Today Magazine"
+    },
+    {
+        "date": "04/01/2023",
+        "title": "World Health Organization Issues Global Health Alert",
+        "author": "Sarah Thompson",
+        "paragrafo1": "The WHO has raised concerns about a new infectious disease spreading rapidly in several countries.",
+        "paragrafo2": "Health authorities are urging individuals to take precautions and stay informed about the situation.",
+        "bibliography": "Source: International Health News Network"
+    },
+    {
+        "date": "05/01/2023",
+        "title": "Stock Market Experiences Major Surge",
+        "author": "David Wilson",
+        "paragrafo1": "Investors are rejoicing as the stock market sees a significant increase in value today.",
+        "paragrafo2": "Analysts attribute the rise to positive economic indicators and investor confidence.",
+        "bibliography": "Source: Financial Times"
+    },
+    {
+        "date": "06/01/2023",
+        "title": "Celebrity Couple Announces Divorce",
+        "author": "Emily Roberts",
+        "paragrafo1": "A high-profile celebrity couple has decided to end their marriage after several years together.",
+        "paragrafo2": "The news has shocked fans and followers of the couple, who were considered a power couple in the entertainment industry.",
+        "bibliography": "Source: Hollywood Gossip Magazine"
+    },
+    {
+        "date": "07/01/2023",
+        "title": "New Study Reveals Health Benefits of Dark Chocolate",
+        "author": "Daniel Brown",
+        "paragrafo1": "Researchers have found that consuming dark chocolate in moderation can have positive effects on heart health.",
+        "paragrafo2": "The study suggests that the antioxidants present in dark chocolate contribute to these benefits.",
+        "bibliography": "Source: Journal of Nutrition Science"
+    },
+    {
+        "date": "08/01/2023",
+        "title": "Historic Landmark Undergoes Renovation",
+        "author": "Olivia Clark",
+        "paragrafo1": "A famous historical landmark is set to undergo a major renovation to preserve its cultural significance.",
+        "paragrafo2": "The renovation project aims to restore the landmark to its original glory while ensuring its longevity for future generations.",
+        "bibliography": "Source: Heritage Conservation Magazine"
+    },
+    {
+        "date": "09/01/2023",
+        "title": "New Species of Fish Discovered in the Amazon River",
+        "author": "James Anderson",
+        "paragrafo1": "Marine biologists have identified a previously unknown species of fish in the Amazon River.",
+        "paragrafo2": "The discovery highlights the rich biodiversity of the Amazon and the need for conservation efforts.",
+        "bibliography": "Source: Marine Biology Research Journal"
+    },
+    {
+        "date": "10/01/2023",
+        "title": "Fashion Designer Launches Sustainable Clothing Line",
+        "author": "Sophia Martinez",
+        "paragrafo1": "A renowned fashion designer has introduced a new clothing line made from eco-friendly materials.",
+        "paragrafo2": "The designer aims to promote sustainable fashion and reduce the industry's impact on the environment.",
+        "bibliography": "Source: Vogue Magazine"
+    },
+    {
+        "date": "11/01/2023",
+        "title": "New Study Finds Link Between Sleep and Mental Health",
+        "author": "Benjamin Lee",
+        "paragrafo1": "Researchers have discovered a strong correlation between sleep patterns and mental health outcomes.",
+        "paragrafo2": "The study emphasizes the importance of prioritizing sleep for overall well-being.",
+        "bibliography": "Source: Psychology Today Journal"
+    },
+    {
+        "date": "12/01/2023",
+        "title": "Tech Company Announces Breakthrough in Artificial Intelligence",
+        "author": "Isabella Hall",
+        "paragrafo1": "A leading tech company has made significant advancements in the field of artificial intelligence.",
+        "paragrafo2": "The new AI technology is said to be more efficient and capable of performing complex tasks.",
+        "bibliography": "Source: AI Technology Magazine"
+    },
+    {
+        "date": "13/01/2023",
+        "title": "New Study Reveals Impact of Climate Change on Coral Reefs",
+        "author": "Alexander Young",
+        "paragrafo1": "Scientists have found that rising ocean temperatures are causing widespread coral bleaching.",
+        "paragrafo2": "The study warns that if current trends continue, many coral reefs could be at risk of disappearing within the next few decades.",
+        "bibliography": "Source: Marine Conservation Journal"
+    },
+    {
+        "date": "14/01/2023",
+        "title": "Famous Author Announces New Book Release",
+        "author": "Amelia King",
+        "paragrafo1": "A bestselling author has announced the release of their highly anticipated new novel.",
+        "paragrafo2": "The book is expected to be a major hit and is already topping pre-order lists.",
+        "bibliography": "Source: Literary News Magazine"
+    },
+    {
+        "date": "15/01/2023",
+        "title": "New Study Finds Link Between Exercise and Longevity",
+        "author": "Henry Scott",
+        "paragrafo1": "Researchers have discovered that regular physical activity is associated with a longer lifespan.",
+        "paragrafo2": "The study highlights the importance of incorporating exercise into daily routines for overall health.",
+        "bibliography": "Source: Journal of Public Health"
+    },
+    {
+        "date": "16/01/2023",
+        "title": "Tech Company Acquires Startup for Innovative Technology",
+        "author": "Charlotte Green",
+        "paragrafo1": "A major tech company has acquired a startup known for its groundbreaking technology.",
+        "paragrafo2": "The acquisition is expected to enhance the company's product offerings and drive future growth.",
+        "bibliography": "Source: Tech Industry News"
+    },
+    {
+        "date": "17/01/2023",
+        "title": "New Study Reveals Benefits of Meditation on Mental Health",
+        "author": "Oliver Adams",
+        "paragrafo1": "Researchers have found that practicing meditation can significantly reduce symptoms of anxiety and depression.",
+        "paragrafo2": "The study suggests that incorporating mindfulness practices into daily life can improve overall mental well-being.",
+        "bibliography": "Source: Journal of Psychology"
+    },
+    {
+        "date": "18/01/2023",
+        "title": "Historic City Hosts International Film Festival",
+        "author": "Mia Roberts",
+        "paragrafo1": "A famous city is set to host an international film festival, attracting filmmakers and celebrities from around the world.",
+        "paragrafo2": "The festival promises to showcase a diverse range of films and celebrate the art of cinema.",
+        "bibliography": "Source: Film Industry Magazine"
+    },
+    {
+        "date": "19/01/2023",
+        "title": "New Species of Bird Discovered in Madagascar",
+        "author": "Liam Thompson",
+        "paragrafo1": "Ornithologists have identified a previously unknown species of bird in Madagascar.",
+        "paragrafo2": "The discovery highlights the unique biodiversity of the island and the need for conservation efforts.",
+        "bibliography": "Source: Birdwatching Journal"
+    },
+    {
+        "date": "20/01/2023",
+        "title": "Fashion Brand Collaborates with Celebrity for Limited Edition Collection",
+        "author": "Ella Wilson",
+        "paragrafo1": "A popular fashion brand has teamed up with a famous celebrity to create a limited edition clothing collection.",
+        "paragrafo2": "The collaboration is expected to be a major hit among fans and fashion enthusiasts alike.",
+        "bibliography": "Source: Fashion Industry News"
+    },
+    {
+        "date": "01/10/2023",
+        "title": "Discovery of New Planet Similar to Earth",
+        "author": "Jane Doe",
+        "paragrafo1": "Astronomers have discovered a new planet that resembles Earth in many ways.",
+        "paragrafo2": "The planet is located in the habitable zone of its star, leading scientists to believe it may harbor life.",
+        "bibliography": "NASA, Journal of Astrophysics, 2023"
+    },
+    {
+        "date": "01/10/2023",
+        "title": "New Vaccine Shows Promise Against Malaria",
+        "author": "John Smith",
+        "paragrafo1": "A groundbreaking vaccine has shown promising results during clinical trials for malaria.",
+        "paragrafo2": "Experts believe this could significantly reduce malaria cases in endemic regions.",
+        "bibliography": "World Health Organization, Clinical Education Journal, 2023"
+    },
+    {
+        "date": "02/10/2023",
+        "title": "Record Heat Waves Hit the Midwest",
+        "author": "Alice Johnson",
+        "paragrafo1": "The Midwest is experiencing unprecedented heat waves affecting agricultural outputs.",
+        "paragrafo2": "Farmers are concerned about the impact on crops and livestock.",
+        "bibliography": "National Weather Service, Agricultural Reports, 2023"
+    },
+    {
+        "date": "02/10/2023",
+        "title": "Technology Conference Highlights Future Innovations",
+        "author": "Robert Brown",
+        "paragrafo1": "Technological advancements were showcased at the annual tech conference this week.",
+        "paragrafo2": "Experts discussed the future of AI, software development, and sustainable tech solutions.",
+        "bibliography": "Tech Innovations Journal, 2023"
+    },
+    {
+        "date": "03/10/2023",
+        "title": "New Study Links Diet to Mental Health",
+        "author": "Emily White",
+        "paragrafo1": "A recent study has found a significant correlation between diet and mental health.",
+        "paragrafo2": "Eating a balanced diet may lead to improvements in mood and cognitive function.",
+        "bibliography": "Psychology Today, Health Report, 2023"
+    },
+    {
+        "date": "03/10/2023",
+        "title": "Nobel Prize Winners Announced",
+        "author": "Lucas Green",
+        "paragrafo1": "The Nobel Prize winners for 2023 have been announced, recognizing significant contributions in various fields.",
+        "paragrafo2": "This year's laureates include scientists, writers, and peace activists.",
+        "bibliography": "Nobel Prize Organization, News Release, 2023"
+    },
+    {
+        "date": "04/10/2023",
+        "title": "Global Unemployment Rates Decline",
+        "author": "Sophia Black",
+        "paragrafo1": "Recent statistics show a decline in global unemployment rates, signaling an economic recovery.",
+        "paragrafo2": "Countries around the world are witnessing job growth in various sectors.",
+        "bibliography": "International Labour Organization, Economic Review, 2023"
+    },
+    {
+        "date": "04/10/2023",
+        "title": "Breakthrough in Renewable Energy Technology",
+        "author": "Daniel Blue",
+        "paragrafo1": "Innovators have developed a new renewable energy technology that could revolutionize the market.",
+        "paragrafo2": "This technology promises higher efficiency and lower costs for energy production.",
+        "bibliography": "Energy Journal, 2023"
+    },
+    {
+        "date": "05/10/2023",
+        "title": "Local Community Wins Environmental Award",
+        "author": "Grace Red",
+        "paragrafo1": "A local community has been recognized for its efforts in environmental conservation.",
+        "paragrafo2": "Initiatives like recycling programs and green spaces have made a notable impact.",
+        "bibliography": "Environmental News Network, 2023"
+    },
+    {
+        "date": "05/10/2023",
+        "title": "SpaceX Successfully Launches Mars Mission",
+        "author": "William Gray",
+        "paragrafo1": "SpaceX has successfully launched a mission to explore Mars with advanced technology.",
+        "paragrafo2": "Scientists are excited about the potential for new discoveries on the red planet.",
+        "bibliography": "SpaceX, Aerospace Journal, 2023"
+    },
+    {
+        "date": "06/10/2023",
+        "title": "New AI App Translates Languages Instantly",
+        "author": "Olivia Pink",
+        "paragrafo1": "A newly launched AI application allows for instant translation of multiple languages.",
+        "paragrafo2": "This app aims to break down communication barriers between cultures.",
+        "bibliography": "TechCrunch, 2023"
+    },
+    {
+        "date": "06/10/2023",
+        "title": "Major Breakthrough in Cancer Research",
+        "author": "Ethan Gold",
+        "paragrafo1": "Researchers have made a significant breakthrough in cancer treatment methods.",
+        "paragrafo2": "The new techniques show high efficiency in targeting cancerous cells.",
+        "bibliography": "Cancer Research Journal, 2023"
+    },
+    {
+        "date": "01/10/2023",
+        "title": "Aliens Land on Earth to Share Knowledge",
+        "author": "Tom Fiction",
+        "paragrafo1": "Reports are coming in that aliens have landed in a field to share knowledge with humans.",
+        "paragrafo2": "Witnesses claim they demonstrated advanced technologies beyond our understanding.",
+        "bibliography": "Galactic News Network, 2023"
+    },
+    {
+        "date": "02/10/2023",
+        "title": "World's First Flying Car Now Available",
+        "author": "Jerry Myths",
+        "paragrafo1": "A company has released the world's first flying car, promising to change the way we travel.",
+        "paragrafo2": "Experts are skeptical about safety and feasibility.",
+        "bibliography": "Future Transportation Journal, 2023"
+    },
+    {
+        "date": "03/10/2023",
+        "title": "Hear About the New Health Beverage That Makes You Live Forever?",
+        "author": "Harry Legend",
+        "paragrafo1": "A new health beverage claims to have the key to eternal life, with ingredients from the Amazon rainforest.",
+        "paragrafo2": "Critics warn against falling for such outrageous claims.",
+        "bibliography": "Wellness Weekly, 2023"
+    },
+    {
+        "date": "04/10/2023",
+        "title": "Scientists Discover a Secret Island Where Dinosaurs Roam",
+        "author": "Jessica Tales",
+        "paragrafo1": "A group of scientists claims to have discovered a hidden island where dinosaurs are still alive.",
+        "paragrafo2": "This discovery has sparked interest and debates within the scientific community.",
+        "bibliography": "Expedition Journal, 2023"
+    },
+    {
+        "date": "05/10/2023",
+        "title": "Chocolate Found to Cure All Diseases",
+        "author": "Rick Rumors",
+        "paragrafo1": "Researchers have supposedly found that chocolate can cure all known diseases.",
+        "paragrafo2": "Many are skeptical of this claim and urge caution.",
+        "bibliography": "Health Myths Digest, 2023"
+    },
+    {
+        "date": "06/10/2023",
+        "title": "Government to Ban All Animals",
+        "author": "Barbara Gossip",
+        "paragrafo1": "In an unexpected move, the government has proposed to ban all domestic animals for environmental reasons.",
+        "paragrafo2": "Citizens are outraged, claiming this measure is unnecessary.",
+        "bibliography": "Civic Concerns Chronicle, 2023"
+    },
+    {
+        "date": "07/10/2023",
+        "title": "Famous Actor Turns Into Cat After Experiment",
+        "author": "Max Imaginary",
+        "paragrafo1": "A well-known actor has transformed into a cat after a bizarre experiment gone wrong.",
+        "paragrafo2": "Fans are left confused and intrigued by the strange turn of events.",
+        "bibliography": "Entertainment Fiction, 2023"
+    },
+    {
+        "date": "07/10/2023",
+        "title": "Reptilian Conspiracy Unveiled",
+        "author": "Nancy Theorist",
+        "paragrafo1": "A new documentary claims to reveal that high-profile leaders are actually reptilian aliens.",
+        "paragrafo2": "This shocking claim has reignited debate among conspiracy theorists.",
+        "bibliography": "Conspiracy Chronicles, 2023"
+    },
+    {
+        "date": "08/10/2023",
+        "title": "Time Travel Now Possible, Says Scientist",
+        "author": "Phil Past",
+        "paragrafo1": "A scientist has announced a breakthrough in time travel technology, claiming it is now possible.",
+        "paragrafo2": "Skeptics are eager to see tangible proof before believing.",
+        "bibliography": "Future Science Review, 2023"
+    },
+    {
+        "date": "08/10/2023",
+        "title": "Mysterious Disappearance of a Town",
+        "author": "Kevin Shadows",
+        "paragrafo1": "A town has mysteriously disappeared overnight without a trace, baffling officials.",
+        "paragrafo2": "Conspiracy theories about this event are spreading rapidly on social media.",
+        "bibliography": "Strange Occurrences Journal, 2023"
     }
 ]
