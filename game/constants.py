@@ -13,9 +13,10 @@ ASSETS_PATH = {
 
     'news_article': 'assets/sprites/objects/news_article.png',
     'selected_news_article': 'assets/sprites/objects/selected_news_article.png',
-    'paperwork': 'assets/sprites/objects/paperwork.png',
     'red_stamp': 'assets/sprites/objects/red_stamp.png',
     'green_stamp': 'assets/sprites/objects/green_stamp.png',
+    'paperwork': 'assets/sprites/objects/paperwork.png',
+    'calendar': 'assets/sprites/objects/calendar.png',
 
     'heart': 'assets/sprites/icons/heart.png',
     'clock_sheet': 'assets/sprites/scenery/clock_sheet.png',
@@ -23,6 +24,7 @@ ASSETS_PATH = {
     'click': 'assets/sprites/cursors/click.png',
     'red_stamp_cursor': 'assets/sprites/cursors/red_stamp_cursor.png',
     'green_stamp_cursor': 'assets/sprites/cursors/green_stamp_cursor.png',
+    'calendar_cursor': 'assets/sprites/cursors/calendar_cursor.png',
 }
 
 class FontManager:

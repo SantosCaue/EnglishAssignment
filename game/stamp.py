@@ -24,10 +24,11 @@ class Stamp:
     def handle_event(self, event: pygame.event.Event, news_article: DraggableNewsArticle) -> None:
         if event.type == pygame.MOUSEMOTION:
             self.is_hovered = self.rect.collidepoint(event.pos)
-            if self.dragging and news_article.rect.collidepoint(event.pos):
-                news_article.set_selected(True)
-            else:
-                news_article.set_selected(False)
+            if self.dragging:
+                if news_article.rect.collidepoint(event.pos):
+                    news_article.set_selected(True)
+                else:
+                    news_article.set_selected(False)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and self.is_hovered:
             self.dragging = True
             cursor_image = self.red_stamp_cursor if self.color == 'red' else self.green_stamp_cursor
