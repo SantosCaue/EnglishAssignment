@@ -29,6 +29,10 @@ class GameState:
         self.game_hud = HUD()
         self.red_stamp = Stamp('red')
         self.green_stamp = Stamp('green')
+        self.bibliography = Item('bibliography', 244, 22)
+        self.formatting = Item('formatting', 332, 22)
+        self.ia_detector = Item('ia_detector', 422, 22)
+        self.banned_authors = Item('banned_authors', 510, 22)
         self.news_article = NewsArticle(self.red_stamp, self.green_stamp)  # Pass the stamp references
         clock_sheet = pygame.image.load(ASSETS_PATH['clock_sheet']).convert_alpha()
         self.clocks = []
@@ -36,10 +40,6 @@ class GameState:
             self.clocks.append(clock_sheet.subsurface(((i % 4) * 80, (i // 4) * 80, 80, 80)))
         self.paperwork = Paperwork()
         self.calendar = Calendar()
-        self.bibliography = Item('bibliography', 236, 14)
-        self.formatting = Item('formatting', 324, 14)
-        self.ia_detector = Item('ia_detector', 412, 14)
-        self.banned_authors = Item('banned_authors', 502, 14)
 
         self.current_state = "menu"
         self.running = True
@@ -90,7 +90,7 @@ class GameState:
                 self.red_stamp.handle_event(event, self.news_article)
                 self.calendar.handle_event(event)
                 self.bibliography.handle_event(event)
-                self.formatting.handle_event(event)
+                self.formatting.handle_event(event, self.news_article)
                 self.ia_detector.handle_event(event)
                 self.banned_authors.handle_event(event)
 
@@ -113,7 +113,8 @@ class GameState:
                         self.ia_detector.is_hovered or
                         self.banned_authors.is_hovered
                 )
-        if not (self.red_stamp.dragging or self.green_stamp.dragging or self.calendar.dragging):
+        if not (self.red_stamp.dragging or self.green_stamp.dragging or self.calendar.dragging or
+                self.bibliography.dragging or self.formatting.dragging or self.ia_detector.dragging or self.banned_authors.dragging):
             new_cursor = self.click_cursor if self.hovering else self.default_cursor
             if pygame.mouse.get_cursor() != new_cursor:
                 pygame.mouse.set_cursor(pygame.cursors.Cursor((0, 0), new_cursor))
@@ -135,12 +136,12 @@ class GameState:
         elif self.current_state == "game":
             self.window.blit(self.clocks[self.game_hud.time_remaining % 12], (367, 198))
             self.game_hud.draw(self.window)
+            self.red_stamp.draw(self.window)
+            self.green_stamp.draw(self.window)
             self.bibliography.draw(self.window)
             self.formatting.draw(self.window)
             self.ia_detector.draw(self.window)
             self.banned_authors.draw(self.window)
-            self.red_stamp.draw(self.window)
-            self.green_stamp.draw(self.window)
             self.paperwork.draw(self.window)
             self.calendar.draw(self.window)
             if self.news_article.is_visible:
