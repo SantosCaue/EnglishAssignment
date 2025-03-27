@@ -1,11 +1,12 @@
 import datetime
+from datetime import datetime
 import pygame
 import json
 import random
 from .constants import FONTS, BLACK, ASSETS_PATH, WINDOW_WIDTH, WINDOW_HEIGHT, BANNED_AUTHORS_LIST, BANNED_BIBLIOGRAPHY_LIST
 
 class NewsArticle:
-    def __init__(self, calendar, bibliography, ia_detector, banned_authors):
+    def __init__(self, calendar, bibliography, ia_detector, banned_authors, hud):
         self.data = self._load_random_article()
         self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
         self.selected_news_article_img = pygame.image.load(ASSETS_PATH['selected_news_article']).convert_alpha()
@@ -17,6 +18,7 @@ class NewsArticle:
         self.bibliography = bibliography
         self.banned_authors = banned_authors
         self.ia_detector = ia_detector
+        self.hud = hud
 
         self.dragging = False
         self.hovered_section = None
@@ -27,6 +29,8 @@ class NewsArticle:
         self.animation_in_progress = False
         self.animation_start_time = None
 
+        self.incogruences = self._get_incogruences()
+        self.has_incogruences = any(self.incogruences.values())
         
 
     def set_selected(self, selected):
@@ -54,7 +58,6 @@ class NewsArticle:
 
             elif event.type == pygame.MOUSEBUTTONUP:
                 self.dragging = False
-
             elif event.type == pygame.MOUSEMOTION:
                 if self.dragging:
                     self.mouse_x, self.mouse_y = event.pos
@@ -87,6 +90,17 @@ class NewsArticle:
 
     def start_animation(self, approved):
         self.is_approved = approved
+        if approved:
+            if self.has_incogruences:
+                self.hud.stamp_incorrect()
+            else:
+                self.hud.stamp_correct()
+        else:
+            if self.has_incogruences:
+                self.hud.stamp_correct()
+            else:
+                self.hud.stamp_incorrect()
+
         self.animation_in_progress = True
         self.animation_start_time = pygame.time.get_ticks()
 
@@ -167,11 +181,11 @@ class NewsArticle:
                     self.calendar.dragging or self.bibliography.dragging or self.banned_authors.dragging or self.ia_detector.dragging):
                 pygame.draw.rect(surface, BLACK, section_rect, 2)  # Desenha o contorno em volta da seção
                 
-    def verify(self) -> dict[str: bool]:
+    def _get_incogruences(self) -> dict[str: bool]:
         incongruences = {
             "banned_authors": self.data["author"] in BANNED_AUTHORS_LIST,
             "bibliography": self.data["bibliography"] in BANNED_BIBLIOGRAPHY_LIST,
-            "formatting": any(val.empty() for val in self.data.values()),
+            "formatting": any(val == "" for val in self.data.values()),
             "calendar": datetime.strptime("07/03/2006", "%d/%m/%Y") < datetime.strptime(self.data["date"],"%d/%m/%Y"),
             "ia_detector": self.data["image"] == "AI"
         }
