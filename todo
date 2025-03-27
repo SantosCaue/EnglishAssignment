@@ -1,7 +1,6 @@
 Adicionar menu de pause
 Parte de seleção de dificuldade
 Parte de seleção de niveis
-timer
 
 - lista de autores banidos
     verificar se o autor tá na lista
@@ -13,3 +12,6 @@ timer
     verificar se a data passou do dia atual
 - imagem
     verificar se a imagem é de ia
+
+
+bug de carimbo

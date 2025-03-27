@@ -5,8 +5,8 @@ from .news_article import NewsArticle  # Alterado para DraggableNewsArticle
 from .stamp import Stamp
 from .paperwork import Paperwork
 from .calendar import Calendar
-from .constants import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, ASSETS_PATH
-from .hud import HUD, UPDATE_TIMER_EVENT, GAME_OVER_EVENT
+from .constants import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, ASSETS_PATH, UPDATE_TIMER_EVENT, GAME_OVER_EVENT
+from .hud import HUD
 from .game_over import GameOver
 
 class GameState:
@@ -37,6 +37,7 @@ class GameState:
         self.current_state = "menu"
         self.running = True
         self.game_hud = HUD()
+
     def run(self):
         while self.running:
             self._handle_events()

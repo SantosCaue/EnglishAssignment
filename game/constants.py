@@ -43,3 +43,6 @@ class FontManager:
 pygame.init()
 
 FONTS = FontManager()
+
+UPDATE_TIMER_EVENT = pygame.USEREVENT + 1
+GAME_OVER_EVENT = pygame.USEREVENT + 2
