@@ -1,6 +1,6 @@
 import pygame
 from .constants import ASSETS_PATH
-from .news_article import DraggableNewsArticle
+from .news_article import NewsArticle
 
 class Calendar:
     def __init__(self) -> None:

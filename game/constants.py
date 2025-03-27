@@ -13,9 +13,12 @@ ASSETS_PATH = {
 
     'news_article': 'assets/sprites/objects/news_article.png',
     'selected_news_article': 'assets/sprites/objects/selected_news_article.png',
+    'approved_article': 'assets/sprites/objects/approved_article.png',
+    'denied_article': 'assets/sprites/objects/denied_article.png',
     'red_stamp': 'assets/sprites/objects/red_stamp.png',
     'green_stamp': 'assets/sprites/objects/green_stamp.png',
     'paperwork': 'assets/sprites/objects/paperwork.png',
+    'empty_paperwork': 'assets/sprites/objects/empty_paperwork.png',
     'calendar': 'assets/sprites/objects/calendar.png',
     'heart': 'assets/sprites/icons/heart.png',
     'clock_sheet': 'assets/sprites/scenery/clock_sheet.png',

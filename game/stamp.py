@@ -1,6 +1,6 @@
 import pygame
 from .constants import ASSETS_PATH
-from .news_article import DraggableNewsArticle
+from .news_article import NewsArticle
 
 class Stamp:
     def __init__(self, color: str) -> None:
@@ -21,7 +21,7 @@ class Stamp:
         if not self.dragging:
             surface.blit(self.stamp_sprite, self.rect.topleft)
 
-    def handle_event(self, event: pygame.event.Event, news_article: DraggableNewsArticle) -> None:
+    def handle_event(self, event: pygame.event.Event, news_article: NewsArticle) -> None:
         if event.type == pygame.MOUSEMOTION:
             self.is_hovered = self.rect.collidepoint(event.pos)
             if self.dragging:
@@ -36,4 +36,6 @@ class Stamp:
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1 and self.dragging:
             self.dragging = False
             pygame.mouse.set_cursor(pygame.cursors.Cursor((0, 0), pygame.image.load(ASSETS_PATH['cursor']).convert_alpha()))
-            news_article.set_selected(False)
+            if news_article.is_selected:
+                news_article.start_animation(self.color == 'green')
+                news_article.set_selected(False)

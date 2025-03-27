@@ -1,7 +1,7 @@
 import pygame
 import sys
 from .menu import Menu
-from .news_article import DraggableNewsArticle  # Alterado para DraggableNewsArticle
+from .news_article import NewsArticle  # Alterado para DraggableNewsArticle
 from .stamp import Stamp
 from .paperwork import Paperwork
 from .calendar import Calendar
@@ -15,7 +15,7 @@ class GameState:
         self.window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption(WINDOW_TITLE)
 
-        # Carrega as imagens de fundo uma vez
+        # Load background images once
         self.background = pygame.image.load(ASSETS_PATH['background']).convert()
 
         self.default_cursor = pygame.image.load(ASSETS_PATH['cursor']).convert_alpha()
@@ -25,19 +25,18 @@ class GameState:
 
         self.game_over = GameOver()
         self.menu = Menu()
-        self.news_article = DraggableNewsArticle()
         self.red_stamp = Stamp('red')
         self.green_stamp = Stamp('green')
+        self.news_article = NewsArticle(self.red_stamp, self.green_stamp)  # Pass the stamp references
         clock_sheet = pygame.image.load(ASSETS_PATH['clock_sheet']).convert_alpha()
         self.clocks = []
-        for i in range(11, -1, -1): 
+        for i in range(11, -1, -1):
             self.clocks.append(clock_sheet.subsurface(((i % 4) * 80, (i // 4) * 80, 80, 80)))
         self.paperwork = Paperwork()
         self.calendar = Calendar()
         self.current_state = "menu"
         self.running = True
         self.game_hud = HUD()
-
     def run(self):
         while self.running:
             self._handle_events()
@@ -51,7 +50,6 @@ class GameState:
     def _handle_events(self):
         for event in pygame.event.get():
             if event.type == UPDATE_TIMER_EVENT:
-                print(self.game_hud.time_remaining)
                 self.game_hud.update_timer()
                 
             if event.type == GAME_OVER_EVENT:
@@ -78,10 +76,11 @@ class GameState:
                 elif action == "quit":
                     self.running = False
             elif self.current_state == "game":
-                self.news_article.handle_event(event)
+                self.paperwork.handle_event(event, self.news_article)
+                if self.news_article.is_visible:
+                    self.news_article.handle_event(event)
                 self.green_stamp.handle_event(event, self.news_article)
                 self.red_stamp.handle_event(event, self.news_article)
-                self.paperwork.handle_event(event)
                 self.calendar.handle_event(event)
 
     def _update(self):
@@ -90,7 +89,7 @@ class GameState:
         elif self.current_state == "menu":
             self.hovering = any(button.is_hovered for button in self.menu.buttons)
         elif self.current_state == "game":
-            if self.news_article.rect.collidepoint(pygame.mouse.get_pos()):
+            if self.news_article.is_visible and self.news_article.rect.collidepoint(pygame.mouse.get_pos()):
                 self.hovering = False
             else:
                 self.hovering = (
@@ -103,6 +102,12 @@ class GameState:
             new_cursor = self.click_cursor if self.hovering else self.default_cursor
             if pygame.mouse.get_cursor() != new_cursor:
                 pygame.mouse.set_cursor(pygame.cursors.Cursor((0, 0), new_cursor))
+
+        if self.news_article.animation_in_progress:
+            self.news_article.update_animation()
+            if not self.news_article.animation_in_progress:
+                pygame.time.delay(500)
+                self.news_article = self.paperwork.reset(self.red_stamp, self.green_stamp)
 
 
     def _render(self):
@@ -119,5 +124,5 @@ class GameState:
             self.paperwork.draw(self.window)
             self.game_hud.draw(self.window)
             self.calendar.draw(self.window)
-            self.news_article.display(self.window)
-            
+            if self.news_article.is_visible:
+                self.news_article.display(self.window)

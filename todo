@@ -3,4 +3,13 @@ Parte de seleção de dificuldade
 Parte de seleção de niveis
 timer
 
--
+- lista de autores banidos
+    verificar se o autor tá na lista
+- bibliografia
+    verificar se a fonte é confiável
+- formatação
+    verificar se o texto está formatado corretamente
+- data
+    verificar se a data passou do dia atual
+- imagem
+    verificar se a imagem é de ia
