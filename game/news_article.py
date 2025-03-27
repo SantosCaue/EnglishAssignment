@@ -3,6 +3,7 @@ import pygame
 import json
 import random
 from .constants import FONTS, BLACK, ASSETS_PATH, WINDOW_WIDTH, WINDOW_HEIGHT, BANNED_AUTHORS_LIST, BANNED_BIBLIOGRAPHY_LIST
+import os
 
 class NewsArticle:
     def __init__(self, calendar, bibliography, ia_detector, banned_authors):
@@ -17,7 +18,7 @@ class NewsArticle:
         self.bibliography = bibliography
         self.banned_authors = banned_authors
         self.ia_detector = ia_detector
-
+        self.random_ai_image = random.choice(os.listdir(ASSETS_PATH["ai_imgs_dir"]))
         self.dragging = False
         self.hovered_section = None
         self.section_rects = {}
@@ -131,37 +132,46 @@ class NewsArticle:
 
             # Inicializa o retângulo da seção com largura e altura zero
             section_rect = pygame.Rect(pos_x, line_y_offset, 0, 0)
+            if key != 'image':
+                for word in words:
+                    test_line = current_line + word + ' '
+                    if font.size(test_line)[0] > max_text_width and key not in ['date']:
+                        if current_line:
+                            rendered = font.render(current_line, True, BLACK)
+                            surface.blit(rendered, (pos_x, line_y_offset))
+                            line_width, line_height = font.size(current_line)
+                            # Expande o retângulo da seção para incluir a linha renderizada
+                            section_rect.union_ip(pygame.Rect(pos_x, line_y_offset, line_width, line_height))
+                            line_y_offset += news_line_spacing
+                            current_line = word + ' '
+                    else:
+                        current_line = test_line
 
-            for word in words:
-                test_line = current_line + word + ' '
-                if font.size(test_line)[0] > max_text_width and key not in ['date']:
-                    if current_line:
-                        rendered = font.render(current_line, True, BLACK)
-                        surface.blit(rendered, (pos_x, line_y_offset))
-                        line_width, line_height = font.size(current_line)
-                        # Expande o retângulo da seção para incluir a linha renderizada
-                        section_rect.union_ip(pygame.Rect(pos_x, line_y_offset, line_width, line_height))
-                        line_y_offset += news_line_spacing
-                        current_line = word + ' '
-                else:
-                    current_line = test_line
+                if current_line:
+                    rendered = font.render(current_line, True, BLACK)
+                    surface.blit(rendered, (pos_x, line_y_offset))
+                    line_width, line_height = font.size(current_line)
+                    # Expande o retângulo da seção para incluir a última linha renderizada
+                    section_rect.union_ip(pygame.Rect(pos_x, line_y_offset, line_width, line_height))
+                    line_y_offset += news_line_spacing
 
-            if current_line:
-                rendered = font.render(current_line, True, BLACK)
-                surface.blit(rendered, (pos_x, line_y_offset))
-                line_width, line_height = font.size(current_line)
-                # Expande o retângulo da seção para incluir a última linha renderizada
-                section_rect.union_ip(pygame.Rect(pos_x, line_y_offset, line_width, line_height))
-                line_y_offset += news_line_spacing
-
-            # Adiciona espaçamento extra após a data, título e parágrafo 2
-            if key in ['title', 'date', 'author', 'paragraph2']:
-                line_y_offset += 15
-                if key != 'title':
+                # Adiciona espaçamento extra após a data, título e parágrafo 2
+                if key in ['title', 'date', 'author', 'paragraph2']:
                     line_y_offset += 15
+                    if key != 'title':
+                        line_y_offset += 15
+            elif key == "image" and value != "":
+                image = pygame.image.load(os.path.join(ASSETS_PATH["ai_imgs_dir"], self.random_ai_image)).convert() if value == "AI" else pygame.image.load(os.path.join(ASSETS_PATH["imgs_dir"], value)).convert()
+                line_y_offset += 15
+                pos_x = self.rect.x + (self.news_article_img.get_width() - image.get_width()) / 2
+                section_rect = pygame.Rect(pos_x, line_y_offset, 0, 0)
+                section_rect.union_ip(pygame.Rect(pos_x, line_y_offset, image.get_width(), image.get_height()))
+                surface.blit(image, (pos_x, line_y_offset))
+                line_y_offset += news_line_spacing + image.get_height()
 
+                
             self.section_rects[key] = section_rect  # Armazena o retângulo da seção
-
+            
             # Desenha o contorno se o mouse estiver sobre a seção
             if self.hovered_section == key and (
                     self.calendar.dragging or self.bibliography.dragging or self.banned_authors.dragging or self.ia_detector.dragging):

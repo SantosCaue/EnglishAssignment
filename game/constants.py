@@ -35,6 +35,8 @@ ASSETS_PATH = {
     'red_stamp_cursor': 'assets/sprites/cursors/red_stamp_cursor.png',
     'green_stamp_cursor': 'assets/sprites/cursors/green_stamp_cursor.png',
     'calendar_cursor': 'assets/sprites/cursors/calendar_cursor.png',
+    'imgs_dir': 'assets/news_articles/imgs/',
+    'ai_imgs_dir': 'assets/news_articles/ia_imgs/'
 }
 
 class FontManager:

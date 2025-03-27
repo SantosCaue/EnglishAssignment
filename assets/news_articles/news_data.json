@@ -144,7 +144,7 @@
         "bibliography": "Space Exploration Journal"
     },
     {
-        "date": "30/01/2006",
+        "date": "30/03/2006",
         "title": "New Study Reveals Benefits of Meditation on Mental Health",
         "author": "Michael Johnson",
         "paragrafo1": "Researchers have found that practicing meditation can significantly reduce symptoms of anxiety and depression.",
@@ -221,7 +221,7 @@
         "author": "Oliver Adams",
         "paragrafo1": "A recent study has found a significant correlation between diet and mental health.",
         "image": "",
-        "paragrafo2": "The findings suggest that a balanced diet can improve mental health and overall well-being.",
+        "paragrafo2": "",
         "bibliography": "Journal of Psychology"
     },
     {
@@ -230,7 +230,7 @@
         "author": "David Wilson",
         "paragrafo1": "The Nobel Prize winners for 2023 have been announced, recognizing significant contributions in various fields.",
         "image": "",
-        "paragrafo2": "The awards ceremony celebrated achievements in science, literature, and peace.",
+        "paragrafo2": "",
         "bibliography": "Tech Today Magazine"
     },
     {
@@ -248,12 +248,12 @@
         "author": "Emily Roberts",
         "paragrafo1": "Innovators have developed a new renewable energy technology that could revolutionize the market.",
         "image": "",
-        "paragrafo2": "This breakthrough could significantly reduce reliance on fossil fuels and combat climate change.",
+        "paragrafo2": "",
         "bibliography": "Journal of Public Health"
     },
     {
         "date": "13/01/2006",
-        "title": "Community Recognized for Environmental Conservation",
+        "title": "",
         "author": "Sarah Thompson",
         "paragrafo1": "A local community has been recognized for its efforts in environmental conservation.",
         "image": "",
@@ -279,21 +279,21 @@
         "bibliography": "Hollywood Gossip Magazine"
     },
     {
-        "date": "16/01/2006",
-        "title": "",
+        "date": "16/04/2006",
+        "title": "Breakthrough in Cancer Treatment",
         "author": "Mia Roberts",
         "paragrafo1": "Researchers have made a significant breakthrough in cancer treatment methods.",
         "image": "",
-        "paragrafo2": "",
+        "paragrafo2": "This breakthrough offers hope for more effective and targeted cancer treatments in the future.",
         "bibliography": "Journal of Nutrition Science"
     },
     {
         "date": "02/06/2006",
         "title": "Aliens Land on Earth to Share Knowledge",
         "author": "David Wilson",
-        "paragrafo1": "",
+        "paragrafo1": "Aliens have landed on Earth, claiming to share advanced knowledge and technology with humanity.",
         "image": "AI",
-        "paragrafo2": "",
+        "paragrafo2": "The aliens claim their knowledge could help solve Earth's most pressing problems, including climate change and energy shortages.",
         "bibliography": "Literary News Magazine"
     },
     {
@@ -309,16 +309,16 @@
         "date": "20/02/2006",
         "title": "Hear About the New Health Beverage That Makes You Live Forever?",
         "author": "Charlotte Green",
-        "paragrafo1": "A new health beverage claims to offer miraculous benefits, including extended lifespan.",
+        "paragrafo1": "A new health beverage claims to offer miraculous benefits, including extending lifespan.",
         "image": "AI",
         "paragrafo2": "Critics warn against falling for such outrageous claims.",
         "bibliography": "Vogue Magazine"
     },
     {
         "date": "04/02/2006",
-        "title": "",
+        "title": "Groundbreaking Discovery in Quantum Physics",
         "author": "Henry Scott",
-        "paragrafo1": "",
+        "paragrafo1": "Scientists have made a groundbreaking discovery in the field of quantum physics, potentially unlocking new technologies and understanding of the universe.",
         "image": "AI",
         "paragrafo2": "This discovery has sparked interest and debates within the scientific community.",
         "bibliography": "Financial Times"
@@ -352,11 +352,11 @@
     },
     {
         "date": "27/01/2006",
-        "title": "Documentary Claims Leaders Are Reptilian Aliens",
+        "title": "Documentary Reveals Shocking Alien Conspiracy",
         "author": "Daniel Brown",
         "paragrafo1": "A new documentary claims to reveal that high-profile leaders are actually reptilian aliens.",
         "image": "AI",
-        "paragrafo2": "The documentary has sparked widespread debate and conspiracy theories.",
+        "paragrafo2": "The documentary has sparked widespread debate and conspiracy theories among viewers.",
         "bibliography": "Journal of Nutrition Science"
     },
     {
