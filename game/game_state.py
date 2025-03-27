@@ -1,7 +1,7 @@
 import pygame
 import sys
 from .menu import Menu
-from .news_article import DraggableNewsArticle  # Alterado para DraggableNewsArticle
+from .news_article import NewsArticle  # Alterado para DraggableNewsArticle
 from .stamp import Stamp
 from .paperwork import Paperwork
 from .calendar import Calendar
@@ -23,12 +23,12 @@ class GameState:
         pygame.mouse.set_cursor(self.cursor)
 
         self.menu = Menu()
-        self.news_article = DraggableNewsArticle()
+        self.news_article = NewsArticle()
         self.red_stamp = Stamp('red')
         self.green_stamp = Stamp('green')
         clock_sheet = pygame.image.load(ASSETS_PATH['clock_sheet']).convert_alpha()
         self.clocks = []
-        for i in range(11, -1, -1): 
+        for i in range(11, -1, -1):
             self.clocks.append(clock_sheet.subsurface(((i % 4) * 80, (i // 4) * 80, 80, 80)))
         self.paperwork = Paperwork()
         self.calendar = Calendar()
@@ -50,7 +50,7 @@ class GameState:
         for event in pygame.event.get():
             if event.type == UPDATE_TIMER_EVENT:
                 self.game_hud.update_timer()
-                
+
             if event.type == pygame.QUIT:
                 self.running = False
 
@@ -61,17 +61,18 @@ class GameState:
                 elif action == "quit":
                     self.running = False
             elif self.current_state == "game":
-                self.news_article.handle_event(event)
+                self.paperwork.handle_event(event, self.news_article)
+                if self.news_article.is_visible:
+                    self.news_article.handle_event(event)
                 self.green_stamp.handle_event(event, self.news_article)
                 self.red_stamp.handle_event(event, self.news_article)
-                self.paperwork.handle_event(event)
                 self.calendar.handle_event(event)
 
     def _update(self):
         if self.current_state == "menu":
             self.hovering = any(button.is_hovered for button in self.menu.buttons)
         elif self.current_state == "game":
-            if self.news_article.rect.collidepoint(pygame.mouse.get_pos()):
+            if self.news_article.is_visible and self.news_article.rect.collidepoint(pygame.mouse.get_pos()):
                 self.hovering = False
             else:
                 self.hovering = (
@@ -84,6 +85,7 @@ class GameState:
             new_cursor = self.click_cursor if self.hovering else self.default_cursor
             if pygame.mouse.get_cursor() != new_cursor:
                 pygame.mouse.set_cursor(pygame.cursors.Cursor((0, 0), new_cursor))
+
 
 
     def _render(self):
@@ -99,5 +101,5 @@ class GameState:
             self.paperwork.draw(self.window)
             self.game_hud.draw(self.window)
             self.calendar.draw(self.window)
-            self.news_article.display(self.window)
-            
+            if self.news_article.is_visible:
+                self.news_article.display(self.window)

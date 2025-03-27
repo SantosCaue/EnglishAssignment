@@ -3,7 +3,7 @@ import json
 import random
 from .constants import FONTS, BLACK, ASSETS_PATH, WINDOW_WIDTH, WINDOW_HEIGHT
 
-class DraggableNewsArticle:
+class NewsArticle:
     def __init__(self):
         self.data = self._load_random_article()
         self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
@@ -13,6 +13,7 @@ class DraggableNewsArticle:
         self.hovered_section = None
         self.section_rects = {}
         self.is_selected = False
+        self.is_visible = False
 
 
     def set_selected(self, selected):
@@ -71,10 +72,10 @@ class DraggableNewsArticle:
                 self.hovered_section = section
                 break
 
-
     def display(self, surface):
-        surface.blit(self.news_article_img, self.rect.topleft)
-        self._render_text(surface)
+        if self.is_visible:
+            surface.blit(self.news_article_img, self.rect.topleft)
+            self._render_text(surface)
 
     def _render_text(self, surface):
         line_y_offset = self.rect.y + 20

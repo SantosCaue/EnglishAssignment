@@ -1,6 +1,6 @@
 import pygame
 from .constants import ASSETS_PATH
-from .news_article import DraggableNewsArticle
+from .news_article import NewsArticle
 
 class Stamp:
     def __init__(self, color: str) -> None:
@@ -21,7 +21,7 @@ class Stamp:
         if not self.dragging:
             surface.blit(self.stamp_sprite, self.rect.topleft)
 
-    def handle_event(self, event: pygame.event.Event, news_article: DraggableNewsArticle) -> None:
+    def handle_event(self, event: pygame.event.Event, news_article: NewsArticle) -> None:
         if event.type == pygame.MOUSEMOTION:
             self.is_hovered = self.rect.collidepoint(event.pos)
             if self.dragging:

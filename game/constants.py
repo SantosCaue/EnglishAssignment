@@ -16,6 +16,7 @@ ASSETS_PATH = {
     'red_stamp': 'assets/sprites/objects/red_stamp.png',
     'green_stamp': 'assets/sprites/objects/green_stamp.png',
     'paperwork': 'assets/sprites/objects/paperwork.png',
+    'empty_paperwork': 'assets/sprites/objects/empty_paperwork.png',
     'calendar': 'assets/sprites/objects/calendar.png',
 
     'heart': 'assets/sprites/icons/heart.png',
