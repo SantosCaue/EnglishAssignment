@@ -13,7 +13,7 @@ class DraggableNewsArticle:
         self.hovered_section = None
         self.section_rects = {}
         self.is_selected = False
-        
+
 
     def set_selected(self, selected):
         self.is_selected = selected
@@ -61,7 +61,7 @@ class DraggableNewsArticle:
                 self.rect.y = new_y
             else:
                 self._check_hover(event.pos)
-                
+
 
 
     def _check_hover(self, mouse_pos):
@@ -71,7 +71,7 @@ class DraggableNewsArticle:
                 self.hovered_section = section
                 break
 
-                
+
     def display(self, surface):
         surface.blit(self.news_article_img, self.rect.topleft)
         self._render_text(surface)
@@ -86,7 +86,6 @@ class DraggableNewsArticle:
             words = text.split()
             current_line = ''
             pos_x = self.rect.x + 20
-            pos_y = line_y_offset
 
             if key == 'title':
                 font = FONTS.title

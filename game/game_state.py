@@ -4,6 +4,7 @@ from .menu import Menu
 from .news_article import DraggableNewsArticle  # Alterado para DraggableNewsArticle
 from .stamp import Stamp
 from .paperwork import Paperwork
+from .calendar import Calendar
 from .constants import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, ASSETS_PATH
 from .hud import HUD, UPDATE_TIMER_EVENT
 
@@ -26,6 +27,7 @@ class GameState:
         self.red_stamp = Stamp('red')
         self.green_stamp = Stamp('green')
         self.paperwork = Paperwork()
+        self.calendar = Calendar()
         self.current_state = "menu"
         self.running = True
         self.game_hud = HUD()
@@ -59,21 +61,22 @@ class GameState:
                 self.green_stamp.handle_event(event, self.news_article)
                 self.red_stamp.handle_event(event, self.news_article)
                 self.paperwork.handle_event(event)
+                self.calendar.handle_event(event)
 
     def _update(self):
         if self.current_state == "menu":
             self.hovering = any(button.is_hovered for button in self.menu.buttons)
         elif self.current_state == "game":
-            # Verifica se o cursor está sobre o news_article
             if self.news_article.rect.collidepoint(pygame.mouse.get_pos()):
                 self.hovering = False
             else:
                 self.hovering = (
                         self.red_stamp.is_hovered or
                         self.green_stamp.is_hovered or
-                        self.paperwork.is_hovered
+                        self.paperwork.is_hovered or
+                        self.calendar.is_hovered
                 )
-        if not (self.red_stamp.dragging or self.green_stamp.dragging):
+        if not (self.red_stamp.dragging or self.green_stamp.dragging or self.calendar.dragging):
             new_cursor = self.click_cursor if self.hovering else self.default_cursor
             if pygame.mouse.get_cursor() != new_cursor:
                 pygame.mouse.set_cursor(pygame.cursors.Cursor((0, 0), new_cursor))
@@ -90,4 +93,5 @@ class GameState:
             self.green_stamp.draw(self.window)
             self.paperwork.draw(self.window)
             self.game_hud.draw(self.window)
+            self.calendar.draw(self.window)
             self.news_article.display(self.window)
