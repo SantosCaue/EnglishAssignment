@@ -25,6 +25,10 @@ class GameState:
         self.news_article = DraggableNewsArticle()
         self.red_stamp = Stamp('red')
         self.green_stamp = Stamp('green')
+        clock_sheet = pygame.image.load(ASSETS_PATH['clock_sheet']).convert_alpha()
+        self.clocks = []
+        for i in range(11, -1, -1): 
+            self.clocks.append(clock_sheet.subsurface(((i % 4) * 80, (i // 4) * 80, 80, 80)))
         self.paperwork = Paperwork()
         self.current_state = "menu"
         self.running = True
@@ -59,7 +63,7 @@ class GameState:
                 self.green_stamp.handle_event(event, self.news_article)
                 self.red_stamp.handle_event(event, self.news_article)
                 self.paperwork.handle_event(event)
-
+                
     def _update(self):
         if self.current_state == "menu":
             self.hovering = any(button.is_hovered for button in self.menu.buttons)
@@ -86,8 +90,10 @@ class GameState:
         if self.current_state == "menu":
             self.menu.draw(self.window)
         elif self.current_state == "game":
+            self.window.blit(self.clocks[self.game_hud.time_remaining % 12], (360, 198))
             self.red_stamp.draw(self.window)
             self.green_stamp.draw(self.window)
             self.paperwork.draw(self.window)
             self.game_hud.draw(self.window)
             self.news_article.display(self.window)
+            

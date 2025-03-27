@@ -18,7 +18,7 @@ ASSETS_PATH = {
     'green_stamp': 'assets/sprites/objects/green_stamp.png',
 
     'heart': 'assets/sprites/icons/heart.png',
-
+    'clock_sheet': 'assets/sprites/scenery/clock_sheet.png',
     'cursor': 'assets/sprites/cursors/cursor.png',
     'click': 'assets/sprites/cursors/click.png',
     'red_stamp_cursor': 'assets/sprites/cursors/red_stamp_cursor.png',
