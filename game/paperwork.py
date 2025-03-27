@@ -27,6 +27,6 @@ class Paperwork:
                 news_article.is_visible = True  # Torna o artigo visível
                 self.is_hovered = False
 
-    def reset(self, red_stamp, green_stamp):
+    def reset(self, calendar, bibliography, ia_detector, banned_authors):
         self.is_empty = False
-        return NewsArticle(red_stamp, green_stamp)
+        return NewsArticle(calendar, bibliography, ia_detector, banned_authors)
