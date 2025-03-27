@@ -51,3 +51,5 @@ FONTS = FontManager()
 
 UPDATE_TIMER_EVENT = pygame.USEREVENT + 1
 GAME_OVER_EVENT = pygame.USEREVENT + 2
+BANNED_AUTHORS_LIST = ['Benjamin Lee', 'Isabella Hall', 'Alexander Young', 'Amelia King', 'Henry Scott', 'Charlotte Green', 'Oliver Adams', 'Mia Roberts']
+BANNED_BIBLIOGRAPHY_LIST = ['Psychology Today Journal', 'AI Technology Magazine', 'Marine Conservation Journal', 'Literary News Magazine', 'Journal of Public Health', 'Tech Industry News', 'Journal of Psychology']

@@ -1,8 +1,10 @@
 import pygame
-from .constants import ASSETS_PATH
+from .constants import ASSETS_PATH, BANNED_AUTHORS_LIST, BANNED_BIBLIOGRAPHY_LIST
+from .news_article import NewsArticle
 
 class Item:
     def __init__(self, name: str, x: int, y: int) -> None:
+        self.name = name
         self.item_sprite = pygame.image.load(ASSETS_PATH[name]).convert_alpha()
         self.rect = self.item_sprite.get_rect()
         self.rect.y = y

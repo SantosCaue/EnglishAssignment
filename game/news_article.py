@@ -1,14 +1,14 @@
+import datetime
 import pygame
 import json
 import random
-from .constants import FONTS, BLACK, ASSETS_PATH, WINDOW_WIDTH, WINDOW_HEIGHT
+from .constants import FONTS, BLACK, ASSETS_PATH, WINDOW_WIDTH, WINDOW_HEIGHT, BANNED_AUTHORS_LIST, BANNED_BIBLIOGRAPHY_LIST
 
 class NewsArticle:
     def __init__(self, red_stamp, green_stamp):
         self.data = self._load_random_article()
         self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
         self.selected_news_article_img = pygame.image.load(ASSETS_PATH['selected_news_article']).convert_alpha()
-        print(self.selected_news_article_img.get_width())
         self.approved_img = pygame.image.load(ASSETS_PATH['approved_article']).convert_alpha()
         self.denied_img = pygame.image.load(ASSETS_PATH['denied_article']).convert_alpha()
         self.rect = self.news_article_img.get_rect(center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
@@ -25,7 +25,7 @@ class NewsArticle:
         self.animation_in_progress = False
         self.animation_start_time = None
 
-
+        
 
     def set_selected(self, selected):
         self.is_selected = selected
@@ -163,3 +163,15 @@ class NewsArticle:
             # Desenha o contorno se o mouse estiver sobre a seção
             if self.hovered_section == key and not (self.red_stamp.dragging or self.green_stamp.dragging):
                 pygame.draw.rect(surface, BLACK, section_rect, 2)  # Desenha o contorno em volta da seção
+                
+            def verify(self, news_article: NewsArticle) -> dict[str: bool]:
+                incongruences = {}
+                incongruences["banned_authors"] = self.data["author"] in BANNED_AUTHORS_LIST
+                incongruences["bibliography"] = self.data["bibliography"] in BANNED_BIBLIOGRAPHY_LIST
+                incongruences["formatting"] = False
+                for i, val in self.data:
+                    if val.empty():
+                        incongruences["formatting"] = True
+                incongruences["calendar"] = datetime.strptime("07/03/2006", "%d/%m/%Y") < datetime.strptime(self.data["date"], "%d/%m/%Y")                
+                incongruences["ia_detector"] = self.data["image"] == "AI"  
+                return incongruences
