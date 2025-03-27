@@ -5,16 +5,18 @@ import random
 from .constants import FONTS, BLACK, ASSETS_PATH, WINDOW_WIDTH, WINDOW_HEIGHT, BANNED_AUTHORS_LIST, BANNED_BIBLIOGRAPHY_LIST
 
 class NewsArticle:
-    def __init__(self, red_stamp, green_stamp):
+    def __init__(self, calendar, bibliography, ia_detector, banned_authors):
         self.data = self._load_random_article()
         self.news_article_img = pygame.image.load(ASSETS_PATH['news_article']).convert_alpha()
         self.selected_news_article_img = pygame.image.load(ASSETS_PATH['selected_news_article']).convert_alpha()
         self.approved_img = pygame.image.load(ASSETS_PATH['approved_article']).convert_alpha()
         self.denied_img = pygame.image.load(ASSETS_PATH['denied_article']).convert_alpha()
         self.rect = self.news_article_img.get_rect(center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
-        
-        self.red_stamp = red_stamp
-        self.green_stamp = green_stamp
+
+        self.calendar = calendar
+        self.bibliography = bibliography
+        self.banned_authors = banned_authors
+        self.ia_detector = ia_detector
 
         self.dragging = False
         self.hovered_section = None
@@ -153,7 +155,7 @@ class NewsArticle:
                 line_y_offset += news_line_spacing
 
             # Adiciona espaçamento extra após a data, título e parágrafo 2
-            if key in ['title', 'date', 'author', 'paragrafo2']:
+            if key in ['title', 'date', 'author', 'paragraph2']:
                 line_y_offset += 15
                 if key != 'title':
                     line_y_offset += 15
@@ -161,7 +163,8 @@ class NewsArticle:
             self.section_rects[key] = section_rect  # Armazena o retângulo da seção
 
             # Desenha o contorno se o mouse estiver sobre a seção
-            if self.hovered_section == key and not (self.red_stamp.dragging or self.green_stamp.dragging):
+            if self.hovered_section == key and (
+                    self.calendar.dragging or self.bibliography.dragging or self.banned_authors.dragging or self.ia_detector.dragging):
                 pygame.draw.rect(surface, BLACK, section_rect, 2)  # Desenha o contorno em volta da seção
                 
             def verify(self, news_article: NewsArticle) -> dict[str: bool]:
